@@ -1,83 +1,48 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
-import { useEffect, useState, lazy, Suspense } from 'react'
-import Lenis from 'lenis'
-import Navigation from './components/Navigation/Navigation'
-import Preloader from './components/Preloader/Preloader'
-import Footer from './components/Footer/Footer'
-
-// Lazy load pages for code splitting
-const Home = lazy(() => import('./pages/Home/Home'))
-const Menu = lazy(() => import('./pages/Menu/Menu'))
-const Gallery = lazy(() => import('./pages/Gallery/Gallery'))
-const BookTable = lazy(() => import('./pages/BookTable/BookTable'))
-
-function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
-}
-
-function AnimatedRoutes() {
-  const location = useLocation()
-  
-  return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={<div className="page-loading" />}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/book" element={<BookTable />} />
-        </Routes>
-      </Suspense>
-    </AnimatePresence>
-  )
-}
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import FloatingActionBar from './components/FloatingActionBar';
+import Home from './pages/Home/Home';
+import MenuPage from './pages/Menu/Menu';
+import GalleryPage from './pages/Gallery/Gallery';
+import BookTablePage from './pages/BookTable/BookTable';
 
 export default function App() {
-  const [loading, setLoading] = useState(true)
-  
-  // Initialize smooth scrolling
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-    })
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    requestAnimationFrame(raf)
-
-    // Store lenis instance globally for GSAP integration
-    window.__lenis = lenis
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
+  }, [pathname, hash]);
 
   return (
-    <Router>
-      <div className="app grain-overlay">
-        {loading && <Preloader onComplete={() => setLoading(false)} />}
-        {!loading && (
-          <>
-            <Navigation />
-            <ScrollToTop />
-            <main>
-              <AnimatedRoutes />
-            </main>
-            <Footer />
-          </>
-        )}
-      </div>
-    </Router>
-  )
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#0C0A09' }}>
+      {/* Fixed Luxury Navigation */}
+      <Navbar />
+
+      {/* Main Page Content */}
+      <main style={{ flexGrow: 1 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/book" element={<BookTablePage />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
+
+      {/* Mobile Floating Quick Action Bar */}
+      <FloatingActionBar />
+
+      {/* Global Royal Brand Footer */}
+      <Footer />
+    </div>
+  );
 }

@@ -1,34 +1,103 @@
 /**
  * Nawab Dhaba — Gallery Data
- * Categories and items for the gallery page.
+ * High-res food, tandoor, ambience, and guest memories.
  */
 
 export const GALLERY_CATEGORIES = [
-  { id: 'all', name: 'All' },
-  { id: 'food', name: 'Food' },
-  { id: 'preparation', name: 'Preparation' },
-  { id: 'ambience', name: 'Ambience' },
-  { id: 'people', name: 'People' },
+  { id: 'all', name: 'All Moments' },
+  { id: 'food', name: 'Signature Dishes' },
+  { id: 'tandoor', name: 'Tandoor & Fire' },
+  { id: 'ambience', name: 'Dhaba Ambience' },
+  { id: 'people', name: 'Happy Foodies' },
 ]
 
 export const GALLERY_ITEMS = [
-  // Food
-  { id: 'g1', category: 'food', image: '/images/gallery/food-1.jpg', alt: 'Sizzling tandoori platter with naan', size: 'large' },
-  { id: 'g2', category: 'food', image: '/images/gallery/food-2.jpg', alt: 'Chicken kadhai close-up with steam', size: 'medium' },
-  { id: 'g3', category: 'food', image: '/images/gallery/food-3.jpg', alt: 'Colorful Gadbad ice cream tower', size: 'medium' },
-  { id: 'g4', category: 'food', image: '/images/gallery/food-4.jpg', alt: 'Pomfret tandoori on a rustic plate', size: 'large' },
-  { id: 'g5', category: 'food', image: '/images/gallery/food-5.jpg', alt: 'Biryani rice with aromatic spices', size: 'small' },
-  
-  // Preparation
-  { id: 'g6', category: 'preparation', image: '/images/gallery/prep-1.jpg', alt: 'Tandoor oven with live flames', size: 'large' },
-  { id: 'g7', category: 'preparation', image: '/images/gallery/prep-2.jpg', alt: 'Chef grilling kebabs over charcoal', size: 'medium' },
-  { id: 'g8', category: 'preparation', image: '/images/gallery/prep-3.jpg', alt: 'Hands kneading fresh dough', size: 'small' },
-  
-  // Ambience
-  { id: 'g9', category: 'ambience', image: '/images/gallery/ambience-1.jpg', alt: 'Warm-lit dhaba interior at evening', size: 'large' },
-  { id: 'g10', category: 'ambience', image: '/images/gallery/ambience-2.jpg', alt: 'Outdoor seating with string lights', size: 'medium' },
-  
-  // People
-  { id: 'g11', category: 'people', image: '/images/gallery/people-1.jpg', alt: 'Family enjoying a shared meal', size: 'medium' },
-  { id: 'g12', category: 'people', image: '/images/gallery/people-2.jpg', alt: 'Friends laughing over food', size: 'large' },
+  {
+    id: 'g1',
+    category: 'food',
+    title: 'The Grand Royal Feast',
+    subtitle: 'Table spread with biryani, naan, kebabs & curries',
+    image: '/images/hero/hero-spread.jpg',
+    size: 'large',
+  },
+  {
+    id: 'g2',
+    category: 'tandoor',
+    title: 'Clay Tandoor Live Fire',
+    subtitle: 'Fresh butter naan slapped on glowing clay walls',
+    image: '/images/gallery/prep-1.jpg',
+    size: 'tall',
+  },
+  {
+    id: 'g3',
+    category: 'food',
+    title: 'Pomfret Tandoori Sizzler',
+    subtitle: 'Whole roasted fish with spicy carom marinade',
+    image: '/images/dishes/pomfret-tandoori.jpg',
+    size: 'medium',
+  },
+  {
+    id: 'g4',
+    category: 'food',
+    title: 'Raan Tandoori Royal Leg',
+    subtitle: 'Slow cooked 24hr marinated leg of lamb',
+    image: '/images/dishes/raan-tandoori.jpg',
+    size: 'wide',
+  },
+  {
+    id: 'g5',
+    category: 'ambience',
+    title: 'Dhaba Night & Charpai Garden',
+    subtitle: 'Warm hanging lanterns, cool breeze & lively dining',
+    image: '/images/ambience/dhaba-night.jpg',
+    size: 'large',
+  },
+  {
+    id: 'g6',
+    category: 'people',
+    title: 'Family Feasting Together',
+    subtitle: 'Warm smiles and hearty laughter over great food',
+    image: '/images/hero/hero-family.jpg',
+    size: 'wide',
+  },
+  {
+    id: 'g7',
+    category: 'food',
+    title: 'Sizzler Rice Extravaganza',
+    subtitle: 'Smoking hot iron platter with kebabs and rice',
+    image: '/images/dishes/sizzler-rice.jpg',
+    size: 'medium',
+  },
+  {
+    id: 'g8',
+    category: 'food',
+    title: 'Nawab Special Chicken Handi',
+    subtitle: 'Simmered in rich cashew tomato gravy with garlic naan',
+    image: '/images/dishes/nawab-special-chicken.jpg',
+    size: 'medium',
+  },
+  {
+    id: 'g9',
+    category: 'food',
+    title: 'Maratha Kabab Skewers',
+    subtitle: 'Chargrilled with thecha garlic spice blend',
+    image: '/images/dishes/maratha-kabab.jpg',
+    size: 'medium',
+  },
+  {
+    id: 'g10',
+    category: 'food',
+    title: 'Special Gadbad Ice Cream',
+    subtitle: 'Towering sweet ending with dry fruits and syrups',
+    image: '/images/dishes/gadbad-special-sweet.jpg',
+    size: 'medium',
+  },
+  {
+    id: 'g11',
+    category: 'food',
+    title: 'Dum Mutton Biryani',
+    subtitle: 'Aromatic saffron basmati rice with tender mutton',
+    image: '/images/dishes/mutton-special-rice.jpg',
+    size: 'tall',
+  },
 ]
