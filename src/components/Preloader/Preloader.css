@@ -1,0 +1,137 @@
+/* =====================================================
+   Preloader Styles
+   ===================================================== */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-base);
+  clip-path: circle(150% at 50% 50%);
+}
+
+.preloader__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 2;
+}
+
+/* Brand Mark */
+.preloader__brand {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--color-saffron);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.preloader__brand::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 148, 42, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.preloader__brand-n {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-saffron);
+}
+
+/* Message */
+.preloader__message-wrapper {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader__message {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.preloader__emoji {
+  font-size: 1.2em;
+}
+
+/* Progress Bar */
+.preloader__progress-track {
+  width: 180px;
+  height: 2px;
+  background: rgba(245, 237, 224, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.preloader__progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-ember), var(--color-saffron));
+  transform-origin: left;
+  border-radius: 2px;
+}
+
+/* Ember Particles */
+.preloader__embers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.preloader__ember {
+  position: absolute;
+  bottom: 30%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  opacity: 0;
+  animation: emberFloat 3s ease-out infinite;
+}
+
+@keyframes emberFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-200px) translateX(var(--drift, 20px)) scale(0);
+    opacity: 0;
+  }
+}
+
+.preloader__ember:nth-child(odd) { --drift: -25px; }
+.preloader__ember:nth-child(even) { --drift: 30px; }
+.preloader__ember:nth-child(3n) { --drift: -10px; width: 3px; height: 3px; background: var(--color-saffron); }
+.preloader__ember:nth-child(4n) { --drift: 15px; width: 2px; height: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader__ember {
+    display: none;
+  }
+  .preloader__brand::before {
+    animation: none;
+  }
+}
