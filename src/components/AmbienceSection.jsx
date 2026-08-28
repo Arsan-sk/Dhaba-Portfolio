@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Check, ArrowRight, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function AmbienceSection() {
   const [activeZone, setActiveZone] = useState(0);
+  const touchStartX = useRef(null);
 
   const zones = [
     {
@@ -40,6 +41,24 @@ export default function AmbienceSection() {
     },
   ];
 
+  const next = () => setActiveZone((prev) => (prev + 1) % zones.length);
+  const prev = () => setActiveZone((prev) => (prev - 1 + zones.length) % zones.length);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 45) {
+      next(); // swipe left -> next
+    } else if (diff < -45) {
+      prev(); // swipe right -> prev
+    }
+    touchStartX.current = null;
+  };
+
   const zone = zones[activeZone];
 
   return (
@@ -50,7 +69,7 @@ export default function AmbienceSection() {
     >
       <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: '2.5rem' }}>
+        <div style={{ marginBottom: '2rem' }}>
           <h2 className="headline-lg" style={{ color: 'var(--ink)', marginBottom: '0.75rem' }}>
             Three ways to <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>sit down.</span>
           </h2>
@@ -59,13 +78,13 @@ export default function AmbienceSection() {
           </p>
         </div>
 
-        {/* Clean Animated Toggle Buttons */}
+        {/* Desktop Toggle Pills (Hidden on Mobile) */}
         <div
+          className="hide-mobile"
           style={{
             display: 'flex',
             gap: '0.65rem',
-            marginBottom: 'clamp(2rem, 4vw, 3rem)',
-            flexWrap: 'wrap',
+            marginBottom: '3rem',
             alignItems: 'center',
           }}
         >
@@ -109,23 +128,131 @@ export default function AmbienceSection() {
           })}
         </div>
 
+        {/* Mobile Arrow Switcher Bar (Visible on Mobile Only) */}
+        <div
+          className="show-mobile"
+          style={{
+            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.75rem',
+            marginBottom: '1.5rem',
+            padding: '0.4rem 0.6rem',
+            background: 'rgba(18, 16, 14, 0.06)',
+            borderRadius: '9999px',
+            border: '1px solid rgba(18, 16, 14, 0.12)',
+          }}
+        >
+          {/* Left Arrow Button */}
+          <button
+            onClick={prev}
+            aria-label="Previous seating zone"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '50%',
+              border: '1.5px solid var(--ink)',
+              background: 'var(--ink)',
+              color: 'var(--cream)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              flexShrink: 0,
+              boxShadow: '0 2px 8px rgba(18, 16, 14, 0.2)',
+              transition: 'transform 0.15s ease',
+            }}
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* Center Title Badge with Active Indicators */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 1,
+              textAlign: 'center',
+              padding: '0 0.5rem',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: '1.05rem',
+                fontWeight: 600,
+                color: 'var(--ink)',
+                lineHeight: 1.2,
+                marginBottom: '0.2rem',
+              }}
+            >
+              {zone.title}
+            </span>
+            {/* 3 Dot Indicators */}
+            <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+              {zones.map((_, i) => (
+                <div
+                  key={i}
+                  onClick={() => setActiveZone(i)}
+                  style={{
+                    width: activeZone === i ? '16px' : '6px',
+                    height: '4px',
+                    borderRadius: '2px',
+                    background: activeZone === i ? 'var(--ember)' : 'rgba(18, 16, 14, 0.25)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Arrow Button */}
+          <button
+            onClick={next}
+            aria-label="Next seating zone"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '50%',
+              border: '1.5px solid var(--ink)',
+              background: 'var(--ink)',
+              color: 'var(--cream)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              flexShrink: 0,
+              boxShadow: '0 2px 8px rgba(18, 16, 14, 0.2)',
+              transition: 'transform 0.15s ease',
+            }}
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
         {/* Zone Display Layout — Mobile-First Grid */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
-            gap: 'clamp(1.75rem, 4vw, 4rem)',
+            gap: 'clamp(1.5rem, 4vw, 4rem)',
             alignItems: 'center',
           }}
         >
-          {/* Photo with smooth transition */}
+          {/* Photo with smooth transition & touch swipe support */}
           <div
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             style={{
               aspectRatio: '16 / 10',
-              borderRadius: '6px',
+              borderRadius: '8px',
               overflow: 'hidden',
               boxShadow: '0 12px 30px rgba(18, 16, 14, 0.12)',
               position: 'relative',
+              touchAction: 'pan-y',
             }}
           >
             <img
@@ -136,7 +263,7 @@ export default function AmbienceSection() {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                animation: 'fadeIn 0.4s ease-in-out',
+                animation: 'fadeIn 0.35s ease-in-out',
               }}
             />
           </div>
