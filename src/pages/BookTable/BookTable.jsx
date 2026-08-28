@@ -5,7 +5,7 @@ import VisitSection from '../../components/VisitSection';
 
 export default function BookTablePage() {
   return (
-    <div className="bg-dhaba-pattern" style={{ minHeight: '100vh', paddingTop: '2rem' }}>
+    <div style={{ paddingTop: '5rem' }}>
       <TableBookingSection />
       <AmbienceSection />
       <VisitSection />

@@ -4,22 +4,21 @@ import { getPhoneURL, getWhatsAppURL } from '../data/business';
 
 export default function FloatingActionBar() {
   return (
-    <div 
-      className="hide-desktop"
+    <div
+      className="show-mobile"
       style={{
         position: 'fixed',
-        bottom: '0',
-        left: '0',
-        right: '0',
+        bottom: 0,
+        left: 0,
+        right: 0,
         zIndex: 999,
-        background: 'rgba(15, 12, 10, 0.95)',
-        backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(212, 175, 55, 0.25)',
+        background: 'rgba(18, 16, 14, 0.96)',
+        backdropFilter: 'blur(16px)',
+        borderTop: '1px solid var(--line)',
         padding: '0.6rem 0.75rem',
-        display: 'flex',
+        display: 'none',
         alignItems: 'center',
         justifyContent: 'space-around',
-        boxShadow: '0 -10px 30px rgba(0, 0, 0, 0.8)'
       }}
     >
       <a
@@ -28,16 +27,16 @@ export default function FloatingActionBar() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.2rem',
-          color: '#E5D6C5',
+          gap: '0.15rem',
+          color: 'var(--cream)',
           textDecoration: 'none',
-          fontSize: '0.7rem',
+          fontSize: '0.65rem',
           fontWeight: 600,
-          flex: 1
+          flex: 1,
         }}
       >
-        <Phone size={18} color="#D4AF37" />
-        <span>Call Us</span>
+        <Phone size={17} />
+        <span>Call</span>
       </a>
 
       <a
@@ -48,54 +47,52 @@ export default function FloatingActionBar() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.2rem',
-          color: '#10B981',
+          gap: '0.15rem',
+          color: '#4ade80',
           textDecoration: 'none',
-          fontSize: '0.7rem',
+          fontSize: '0.65rem',
           fontWeight: 600,
-          flex: 1
+          flex: 1,
         }}
       >
-        <MessageCircle size={18} color="#10B981" />
+        <MessageCircle size={17} />
         <span>WhatsApp</span>
       </a>
 
       <a
-        href="/menu"
+        href="/#menu"
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.2rem',
-          color: '#E5D6C5',
+          gap: '0.15rem',
+          color: 'var(--cream)',
           textDecoration: 'none',
-          fontSize: '0.7rem',
+          fontSize: '0.65rem',
           fontWeight: 600,
-          flex: 1
+          flex: 1,
         }}
       >
-        <Utensils size={18} color="#FF5722" />
+        <Utensils size={17} />
         <span>Menu</span>
       </a>
 
       <a
         href="/book"
         style={{
-          background: 'linear-gradient(135deg, #F59E0B 0%, #D4AF37 50%, #B45309 100%)',
-          color: '#0F0C0A',
-          padding: '0.5rem 1rem',
-          borderRadius: '9999px',
+          background: 'var(--ember)',
+          color: 'var(--cream)',
+          padding: '0.5rem 1.1rem',
           display: 'flex',
           alignItems: 'center',
           gap: '0.35rem',
           textDecoration: 'none',
-          fontSize: '0.78rem',
+          fontSize: '0.75rem',
           fontWeight: 700,
-          boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)'
         }}
       >
-        <Calendar size={15} />
-        <span>Book Table</span>
+        <Calendar size={14} />
+        <span>Book</span>
       </a>
     </div>
   );

@@ -1,264 +1,201 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Flame, 
-  Star, 
-  Award, 
-  Clock, 
-  MapPin, 
-  Sparkles, 
-  ChevronRight, 
-  ArrowRight,
-  ShieldCheck
-} from 'lucide-react';
-import { BUSINESS, getDirectionsURL } from '../data/business';
+import { ArrowRight, MapPin, Clock } from 'lucide-react';
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const heroSlides = [
-    {
-      image: '/images/hero/hero-spread.jpg',
-      title: 'A Royal Feast On The Highway',
-      subtitle: 'Charcoal-fired tandoor, slow-cooked Mughlai dum handis, and authentic Dhaba flavors.',
-      badge: '★ Most Celebrated Dhaba in Bhiwandi'
-    },
-    {
-      image: '/images/dishes/pomfret-tandoori.jpg',
-      title: 'Fresh Catch, Fiery Tandoor',
-      subtitle: 'Whole Pomfret & Bombil fish roasted to smoky perfection with Nawab signature masalas.',
-      badge: '🔥 Signature Seafood Specialties'
-    },
-    {
-      image: '/images/hero/hero-family.jpg',
-      title: 'Where Memories Are Made Together',
-      subtitle: 'Spacious family seating, traditional garden charpais, and welcoming late-night hospitality.',
-      badge: '👨‍👩‍👧‍👦 Family & Group Friendly Dining'
-    }
+  const slides = [
+    '/images/hero/hero-tandoori.jpg',
+    '/images/hero/hero-spread.jpg',
+    '/images/hero/hero-family.jpg',
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section id="hero" style={{
-      position: 'relative',
-      minHeight: '92vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden',
-      padding: '4rem 1.5rem 6rem'
-    }}>
-      {/* Background Images with Crossfade */}
-      {heroSlides.map((slide, index) => (
+    <section
+      id="hero"
+      style={{
+        position: 'relative',
+        height: '100vh',
+        minHeight: '650px',
+        maxHeight: '1000px',
+        overflow: 'hidden',
+        background: 'var(--ink)',
+      }}
+    >
+      {/* Background Images (crossfade) */}
+      {slides.map((src, i) => (
         <div
-          key={index}
+          key={i}
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url(${slide.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: currentSlide === index ? 1 : 0,
-            transform: currentSlide === index ? 'scale(1)' : 'scale(1.06)',
-            transition: 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 6s ease-out',
-            zIndex: 0
+            opacity: currentSlide === i ? 1 : 0,
+            transition: 'opacity 1.2s ease-in-out',
+            zIndex: 1,
           }}
-        />
+        >
+          <img
+            src={src}
+            alt=""
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 30%',
+            }}
+          />
+        </div>
       ))}
 
-      {/* Dark Vignette Overlay */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(180deg, rgba(12,10,9,0.7) 0%, rgba(12,10,9,0.85) 60%, #0C0A09 100%)',
-        zIndex: 1
-      }} />
+      {/* Dark Gradient Overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 2,
+          background:
+            'linear-gradient(180deg, rgba(18,16,14,0.3) 0%, rgba(18,16,14,0.15) 30%, rgba(18,16,14,0.6) 70%, rgba(18,16,14,0.95) 100%)',
+        }}
+      />
 
-      {/* Hero Content */}
-      <div style={{
-        position: 'relative',
-        zIndex: 10,
-        maxWidth: '1100px',
-        margin: '0 auto',
-        textAlign: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '1.75rem'
-      }}>
-        
-        {/* Top Badge */}
-        <div style={{
-          background: 'rgba(212, 175, 55, 0.15)',
-          border: '1px solid rgba(212, 175, 55, 0.4)',
-          borderRadius: '9999px',
-          padding: '0.45rem 1.25rem',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: '#FDE68A',
-          fontSize: '0.85rem',
-          fontWeight: 600,
-          backdropFilter: 'blur(8px)',
-          boxShadow: '0 0 20px rgba(212, 175, 55, 0.2)'
-        }}>
-          <Sparkles size={16} color="#D4AF37" />
-          <span>{heroSlides[currentSlide].badge}</span>
-        </div>
-
-        {/* Main Heading */}
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-          fontWeight: 900,
-          lineHeight: 1.08,
-          color: '#FAF5EE',
-          maxWidth: '950px',
-          textShadow: '0 4px 30px rgba(0, 0, 0, 0.8)'
-        }}>
-          {heroSlides[currentSlide].title.split(' ')[0]}{' '}
-          <span className="text-gold-gradient">
-            {heroSlides[currentSlide].title.split(' ').slice(1, 3).join(' ')}
-          </span>{' '}
-          {heroSlides[currentSlide].title.split(' ').slice(3).join(' ')}
-        </h1>
-
-        {/* Subtitle */}
-        <p style={{
-          fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-          color: '#E5D6C5',
-          maxWidth: '750px',
-          lineHeight: 1.6,
-          textShadow: '0 2px 10px rgba(0, 0, 0, 0.7)'
-        }}>
-          {heroSlides[currentSlide].subtitle}
-        </p>
-
-        {/* Key Features Pill */}
-        <div style={{
+      {/* Content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 3,
+          height: '100%',
+          maxWidth: '1400px',
+          margin: '0 auto',
+          padding: '0 2rem',
           display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '1.25rem',
-          fontSize: '0.85rem',
-          color: '#D6C7B2',
-          margin: '0.5rem 0'
-        }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-            <Flame size={15} color="#FF5722" /> 100% Charcoal Tandoor
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          paddingBottom: '6rem',
+        }}
+      >
+        {/* Main Headline + Monogram row */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            gap: '2rem',
+            marginBottom: '2rem',
+          }}
+        >
+          {/* Headline */}
+          <h1
+            className="headline-xl"
+            style={{
+              color: 'var(--cream)',
+              maxWidth: '700px',
+            }}
+          >
+            Where the road ends,{' '}
+            <br />
+            the feast{' '}
+            <span style={{ fontStyle: 'italic' }}>begins.</span>
+          </h1>
+
+          {/* ND Monogram */}
+          <div className="monogram hide-mobile">
+            ND
+          </div>
+        </div>
+
+        {/* Sub-info row */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.5rem',
+            flexWrap: 'wrap',
+            marginBottom: '1.75rem',
+          }}
+        >
+          <span
+            className="body-sm"
+            style={{
+              color: 'var(--cream)',
+              opacity: 0.7,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+            }}
+          >
+            <MapPin size={14} />
+            Nashik Road, Bhiwandi
           </span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-            <ShieldCheck size={15} color="#10B981" /> 100% Fresh Halal Meat
-          </span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-            <Clock size={15} color="#D4AF37" /> Open Late Till 1:00 AM
-          </span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-            <MapPin size={15} color="#FF5722" /> Nashik Road, Bhinar
+          <span
+            style={{
+              width: '4px',
+              height: '4px',
+              borderRadius: '50%',
+              background: 'var(--muted)',
+            }}
+          />
+          <span
+            className="body-sm"
+            style={{
+              color: 'var(--cream)',
+              opacity: 0.7,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+            }}
+          >
+            <Clock size={14} />
+            Open Daily · 11 AM – 1 AM
           </span>
         </div>
 
-        {/* Hero CTAs */}
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '1rem',
-          marginTop: '0.5rem'
-        }}>
-          <a 
-            href="/menu" 
-            className="btn-ember"
-            style={{ fontSize: '1rem', padding: '0.9rem 2.2rem' }}
-          >
-            <span>Explore Full Menu</span>
-            <ArrowRight size={18} />
+        {/* CTA Buttons */}
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <a href="/book" className="btn-ember">
+            Reserve a Table
+            <ArrowRight size={16} />
           </a>
-
-          <a 
-            href="/book" 
-            className="btn-gold"
-            style={{ fontSize: '1rem', padding: '0.9rem 2.2rem' }}
-          >
-            <span>Reserve a Table</span>
-            <ChevronRight size={18} />
+          <a href="/#menu" className="btn-outline">
+            Explore the Menu
           </a>
-
-          <a 
-            href={getDirectionsURL()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline-gold"
-            style={{ fontSize: '1rem', padding: '0.9rem 1.8rem' }}
-          >
-            <MapPin size={16} />
-            <span>Get Directions</span>
-          </a>
-        </div>
-
-        {/* Slide Indicators */}
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem' }}>
-          {heroSlides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              style={{
-                width: currentSlide === i ? '32px' : '10px',
-                height: '6px',
-                borderRadius: '4px',
-                background: currentSlide === i ? '#D4AF37' : 'rgba(255, 255, 255, 0.25)',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
         </div>
       </div>
 
-      {/* Floating Highlights Bar at Bottom of Hero */}
-      <div style={{
-        position: 'absolute',
-        bottom: '0',
-        left: '0',
-        right: '0',
-        zIndex: 10,
-        background: 'rgba(18, 14, 12, 0.85)',
-        backdropFilter: 'blur(12px)',
-        borderTop: '1px solid rgba(212, 175, 55, 0.15)',
-        padding: '1rem'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1.5rem',
-          textAlign: 'center'
-        }}>
-          <div>
-            <div style={{ color: '#D4AF37', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-serif)' }}>4.8 ★★★★★</div>
-            <div style={{ fontSize: '0.75rem', color: '#A89F91', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Google Rating & Reviews</div>
-          </div>
-          <div>
-            <div style={{ color: '#FF5722', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-serif)' }}>25+</div>
-            <div style={{ fontSize: '0.75rem', color: '#A89F91', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Secret Tandoor Recipes</div>
-          </div>
-          <div>
-            <div style={{ color: '#10B981', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-serif)' }}>500+</div>
-            <div style={{ fontSize: '0.75rem', color: '#A89F91', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Happy Guests Every Day</div>
-          </div>
-          <div>
-            <div style={{ color: '#FDE68A', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'var(--font-serif)' }}>3 Seating Zones</div>
-            <div style={{ fontSize: '0.75rem', color: '#A89F91', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Family · Garden · AC Hall</div>
-          </div>
-        </div>
+      {/* Bottom Pill Navigation Bar */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 4,
+          background: 'var(--ink)',
+          borderTop: '1px solid var(--line)',
+          padding: '0.85rem 2rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          overflowX: 'auto',
+        }}
+      >
+        {[
+          { label: 'The Table', href: '#story' },
+          { label: 'The Feast', href: '#menu' },
+          { label: 'The Place', href: '#ambience' },
+          { label: 'Gallery', href: '#gallery' },
+          { label: 'Find Us', href: '#visit' },
+        ].map((item) => (
+          <a key={item.label} href={`/${item.href}`} className="pill">
+            {item.label}
+          </a>
+        ))}
       </div>
     </section>
   );

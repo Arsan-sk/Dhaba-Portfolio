@@ -1,44 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HeroSection from '../../components/HeroSection';
 import StorySection from '../../components/StorySection';
 import SignatureCravings from '../../components/SignatureCravings';
+import FeastCTA from '../../components/FeastCTA';
 import MenuSection from '../../components/MenuSection';
+import GoodFoodSection from '../../components/GoodFoodSection';
 import AmbienceSection from '../../components/AmbienceSection';
 import TableBookingSection from '../../components/TableBookingSection';
 import GallerySection from '../../components/GallerySection';
-import TestimonialsSection from '../../components/TestimonialsSection';
 import VisitSection from '../../components/VisitSection';
 
 export default function Home() {
-  const [selectedDishModal, setSelectedDishModal] = useState(null);
-
   return (
-    <div className="bg-dhaba-pattern">
-      {/* 1. Hero Section */}
+    <div>
+      {/* 1. Full-viewport Hero */}
       <HeroSection />
 
-      {/* 2. Story & Heritage Section */}
+      {/* 2. Editorial Story — "A table is never just a table." */}
       <StorySection />
 
-      {/* 3. Chef's Signature Cravings Showcase */}
-      <SignatureCravings onSelectDish={setSelectedDishModal} />
+      {/* 3. Signature Dish Carousel — "Meet the main event." */}
+      <SignatureCravings />
 
-      {/* 4. Interactive Full Menu Explorer */}
+      {/* 4. Ember CTA — "Start with one. End with a feast." */}
+      <FeastCTA />
+
+      {/* 5. Full Menu Explorer — "The full spread." */}
       <MenuSection />
 
-      {/* 5. Ambience & Seating Experience */}
+      {/* 6. "Good food multiplies." */}
+      <GoodFoodSection />
+
+      {/* 7. Ambience Zones — "Three ways to sit down." */}
       <AmbienceSection />
 
-      {/* 6. Interactive Visual Table Reservation Engine */}
+      {/* 8. Interactive Table Booking — "Grab a seat." */}
       <TableBookingSection />
 
-      {/* 7. Photo & Moments Gallery */}
+      {/* 9. Gallery — "Moments at the table." */}
       <GallerySection />
 
-      {/* 8. Verified Guest Testimonials */}
-      <TestimonialsSection />
-
-      {/* 9. Live Location & Highway Access Map */}
+      {/* 10. Visit — "Find us hungry." */}
       <VisitSection />
     </div>
   );
