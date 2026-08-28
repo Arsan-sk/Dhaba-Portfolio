@@ -1,34 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, ArrowRight } from 'lucide-react';
-import { BUSINESS, getPhoneURL, getWhatsAppURL } from '../data/business';
+import { Menu, X, Phone } from 'lucide-react';
+import { BUSINESS, getPhoneURL } from '../data/business';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    let prevScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Enable blurred background when scrolled past top
+      setScrolled(currentScrollY > 40);
+
+      // If at the top of the page, always show navbar
+      if (currentScrollY <= 40) {
+        setIsVisible(true);
+      } 
+      // If scrolling down, swipe navbar up (hide)
+      else if (currentScrollY > prevScrollY && currentScrollY > 70) {
+        setIsVisible(false);
+      } 
+      // If scrolling up, swipe navbar down (reveal)
+      else if (currentScrollY < prevScrollY) {
+        setIsVisible(true);
+      }
+
+      prevScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     setIsOpen(false);
+    setIsVisible(true);
   }, [location]);
 
   const navLinks = [
-    { label: 'The Table', href: '/#story' },
-    { label: 'The Feast', href: '/#menu' },
-    { label: 'The Place', href: '/#ambience' },
-    { label: 'Gallery', href: '/gallery' },
-    { label: 'Find Us', href: '/#visit' },
+    { label: 'HOME', href: '/' },
+    { label: 'MENU', href: '/menu' },
+    { label: 'GALLERY', href: '/gallery' },
+    { label: 'BOOK A TABLE', href: '/book' },
   ];
 
   return (
     <>
-      {/* Main Nav */}
       <header
         style={{
           position: 'fixed',
@@ -36,9 +59,10 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 1000,
+          transform: isVisible || isOpen ? 'translateY(0)' : 'translateY(-100%)',
           background: scrolled ? 'rgba(18, 16, 14, 0.95)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          backdropFilter: scrolled ? 'blur(14px)' : 'none',
+          transition: 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease',
           borderBottom: scrolled ? '1px solid var(--line)' : '1px solid transparent',
         }}
       >
@@ -46,66 +70,124 @@ export default function Navbar() {
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '1rem 2rem',
+            padding: '1.25rem 2rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
           }}
         >
-          {/* Logo */}
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Logo — Gold Circled N + NAWAB Dhaba */}
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}>
             <div
               style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                border: '1.5px solid var(--gold)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 fontFamily: 'var(--font-serif)',
-                fontSize: '1.5rem',
-                fontWeight: 400,
-                color: 'var(--cream)',
-                letterSpacing: '-0.02em',
+                fontSize: '1rem',
+                fontWeight: 600,
+                color: 'var(--gold)',
+                flexShrink: 0,
               }}
             >
-              Nawab<span style={{ color: 'var(--ember)', fontStyle: 'italic' }}> Dhaba</span>
+              N
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+              <span
+                style={{
+                  fontSize: '0.6rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.15em',
+                  color: 'var(--cream)',
+                  textTransform: 'uppercase',
+                }}
+              >
+                NAWAB
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.25rem',
+                  fontStyle: 'italic',
+                  fontWeight: 600,
+                  color: 'var(--gold)',
+                  marginTop: '1px',
+                }}
+              >
+                Dhaba
+              </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+          <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 style={{
-                  fontSize: '0.85rem',
-                  fontWeight: 500,
-                  color: 'var(--cream)',
-                  opacity: 0.7,
-                  transition: 'opacity 0.2s ease',
-                  letterSpacing: '0.02em',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  color: location.pathname === link.href ? 'var(--gold)' : 'var(--cream)',
+                  opacity: location.pathname === link.href ? 1 : 0.85,
+                  transition: 'opacity 0.2s ease, color 0.2s ease',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.style.color = 'var(--gold)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = location.pathname === link.href ? '1' : '0.85';
+                  e.currentTarget.style.color = location.pathname === link.href ? 'var(--gold)' : 'var(--cream)';
+                }}
               >
                 {link.label}
               </a>
             ))}
+
+            {/* CALL link */}
+            <a
+              href={getPhoneURL()}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: 'var(--cream)',
+                opacity: 0.85,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                transition: 'opacity 0.2s ease, color 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.color = 'var(--gold)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '0.85';
+                e.currentTarget.style.color = 'var(--cream)';
+              }}
+            >
+              <Phone size={13} />
+              CALL
+            </a>
           </nav>
 
-          {/* Right: CTA + Burger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <a
-              href="/book"
-              className="btn-ember hide-mobile"
-              style={{ padding: '0.6rem 1.5rem', fontSize: '0.8rem' }}
-            >
-              Book a Table
-            </a>
-
+          {/* Mobile Burger */}
+          <div className="show-mobile" style={{ display: 'none' }}>
             <button
-              className="show-mobile"
               onClick={() => setIsOpen(!isOpen)}
               style={{
-                display: 'none',
                 width: '40px',
                 height: '40px',
+                display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'var(--cream)',
@@ -160,17 +242,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      {/* Sticky Sub-Nav (pills) — appears after hero */}
-      <div
-        className="nav-sticky"
-        style={{
-          display: scrolled ? 'block' : 'none',
-          marginTop: '60px',
-        }}
-      >
-        {/* This is invisible spacer — the actual pills are part of the hero bottom */}
-      </div>
     </>
   );
 }

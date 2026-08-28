@@ -59,7 +59,7 @@ export default function GoodFoodSection() {
               for stories. Come for the food, stay for the chaos.
             </p>
 
-            <a href="/#menu" className="btn-text">
+            <a href="/menu" className="btn-text">
               See full menu <ArrowRight size={14} />
             </a>
           </div>

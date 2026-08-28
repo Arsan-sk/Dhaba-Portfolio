@@ -47,6 +47,16 @@ body {
   overflow-x: hidden;
 }
 
+::selection {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
+::-moz-selection {
+  background-color: var(--gold);
+  color: var(--ink);
+}
+
 img, video {
   max-width: 100%;
   display: block;

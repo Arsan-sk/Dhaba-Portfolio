@@ -7,21 +7,36 @@ export default function AmbienceSection() {
   const zones = [
     {
       title: 'Family Enclosures',
-      subtitle: 'Private, spacious, child-friendly cabins with dedicated service.',
-      image: '/images/hero/hero-family.jpg',
-      features: ['6–10 seater partitioned tables', 'Air-cooled private cabins', 'Fast family service', 'High chairs available'],
+      subtitle: 'Private, spacious, child-friendly cabins with dedicated table service, warm lantern glow, and comfortable traditional seating for the whole family.',
+      image: '/images/ambience/family-cabin.jpg',
+      features: [
+        '6–10 seater private wooden cabins',
+        'Traditional low seating & cushioned benches',
+        'Fast family & children priority service',
+        'Cozy, noise-buffered atmosphere',
+      ],
     },
     {
       title: 'Charpai Garden',
-      subtitle: 'Traditional woven cots under the stars. The authentic highway dhaba experience.',
-      image: '/images/ambience/dhaba-night.jpg',
-      features: ['Open-air seating with bolsters', 'Warm fairy lights & lanterns', 'Live tandoor view', 'Perfect for late nights'],
+      subtitle: 'Traditional woven rope charpais under the night sky. Steaming hot creamy cutting chai, live tandoor aromas, and endless conversations with friends.',
+      image: '/images/ambience/charpai-chai.jpg',
+      features: [
+        'Authentic woven charpai cots with bolsters',
+        'Steaming cutting chai & late-night snacks',
+        'Fairy string lights & rustic kerosene lanterns',
+        'Open breeze & highway night ambience',
+      ],
     },
     {
       title: 'AC Dining Hall',
-      subtitle: 'Climate-controlled comfort with cushioned seating and Mughlai wall art.',
-      image: '/images/hero/hero-spread.jpg',
-      features: ['Full air-conditioning', 'Cushioned luxury seating', 'Ideal for celebrations', 'Premium décor'],
+      subtitle: 'Opulent Mughal-inspired air-conditioned luxury hall with velvet upholstery, ornate jaali arches, glowing chandeliers, and pristine banquet dining.',
+      image: '/images/ambience/royal-ac-hall.jpg',
+      features: [
+        'Full air-conditioned climate comfort',
+        'Plush velvet booths & carved teak tables',
+        'Ideal for grand feasts & celebrations',
+        'Dedicated royal dining butler service',
+      ],
     },
   ];
 
@@ -35,62 +50,130 @@ export default function AmbienceSection() {
     >
       <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ marginBottom: '2.5rem' }}>
           <h2 className="headline-lg" style={{ color: 'var(--ink)', marginBottom: '0.75rem' }}>
-            Three ways to <span style={{ fontStyle: 'italic' }}>sit down.</span>
+            Three ways to <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>sit down.</span>
           </h2>
-          <p className="body-lg" style={{ color: 'var(--muted)', maxWidth: '520px' }}>
-            Whether it's a family cabin, an open-air charpai, or an AC hall — every seat has the same view: a table full of food.
+          <p className="body-lg" style={{ color: 'var(--muted)', maxWidth: '540px' }}>
+            Whether it's a private family cabin, an open-air charpai under the stars, or the royal AC hall — every seat carries the same authentic highway hospitality.
           </p>
         </div>
 
-        {/* Zone Selector Tabs */}
-        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
-          {zones.map((z, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveZone(i)}
-              className={`pill-ink ${activeZone === i ? 'active' : ''}`}
-            >
-              {z.title}
-            </button>
-          ))}
-        </div>
-
-        {/* Zone Display */}
+        {/* Clean Animated Toggle Buttons */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)',
-            gap: 'clamp(2rem, 4vw, 4rem)',
+            display: 'inline-flex',
+            gap: '0.75rem',
+            marginBottom: '2.75rem',
+            flexWrap: 'wrap',
             alignItems: 'center',
           }}
         >
-          {/* Photo */}
-          <div style={{ aspectRatio: '16 / 10', borderRadius: '8px', overflow: 'hidden' }}>
+          {zones.map((z, i) => {
+            const isActive = activeZone === i;
+            return (
+              <button
+                key={z.title}
+                onClick={() => setActiveZone(i)}
+                style={{
+                  padding: '0.65rem 1.6rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.02em',
+                  cursor: 'pointer',
+                  border: isActive ? '1.5px solid var(--ink)' : '1.5px solid rgba(18, 16, 14, 0.22)',
+                  background: isActive ? 'var(--ink)' : 'transparent',
+                  color: isActive ? 'var(--cream)' : 'var(--ink)',
+                  borderRadius: '9999px',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transform: isActive ? 'scale(1.02)' : 'scale(1)',
+                  boxShadow: isActive ? '0 4px 14px rgba(18, 16, 14, 0.18)' : 'none',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.borderColor = 'var(--ink)';
+                    e.currentTarget.style.background = 'rgba(18, 16, 14, 0.08)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.borderColor = 'rgba(18, 16, 14, 0.22)';
+                    e.currentTarget.style.background = 'transparent';
+                  }
+                }}
+              >
+                {z.title}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Zone Display Layout */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 1fr)',
+            gap: 'clamp(2rem, 4.5vw, 4.5rem)',
+            alignItems: 'center',
+          }}
+        >
+          {/* Photo with smooth transition */}
+          <div
+            style={{
+              aspectRatio: '16 / 10',
+              borderRadius: '6px',
+              overflow: 'hidden',
+              boxShadow: '0 12px 30px rgba(18, 16, 14, 0.12)',
+              position: 'relative',
+            }}
+          >
             <img
+              key={zone.title}
               src={zone.image}
               alt={zone.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                animation: 'fadeIn 0.4s ease-in-out',
+              }}
             />
           </div>
 
           {/* Details */}
           <div>
-            <h3 className="headline-md" style={{ color: 'var(--ink)', marginBottom: '0.5rem' }}>
+            <h3
+              className="headline-md"
+              style={{ color: 'var(--ink)', marginBottom: '0.75rem' }}
+            >
               {zone.title}
             </h3>
-            <p className="body-lg" style={{ color: 'var(--muted)', marginBottom: '1.5rem', maxWidth: '400px' }}>
+            <p
+              className="body-lg"
+              style={{
+                color: '#5c5449',
+                marginBottom: '1.75rem',
+                maxWidth: '460px',
+                lineHeight: 1.6,
+              }}
+            >
               {zone.subtitle}
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+                marginBottom: '2.25rem',
+              }}
+            >
               {zone.features.map((f, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                   <div
                     style={{
-                      width: '18px',
-                      height: '18px',
+                      width: '19px',
+                      height: '19px',
                       borderRadius: '50%',
                       background: 'var(--ember)',
                       display: 'flex',
@@ -99,19 +182,36 @@ export default function AmbienceSection() {
                       flexShrink: 0,
                     }}
                   >
-                    <Check size={11} color="var(--cream)" />
+                    <Check size={11} color="var(--cream)" strokeWidth={3} />
                   </div>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--ink)' }}>{f}</span>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--ink)', fontWeight: 500 }}>
+                    {f}
+                  </span>
                 </div>
               ))}
             </div>
 
-            <a href="/book" className="btn-outline-ink">
+            <a
+              href="/book"
+              className="btn-outline-ink"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+              }}
+            >
               Reserve this Zone <ArrowRight size={14} />
             </a>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0.6; transform: scale(0.99); }
+          to { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
     </section>
   );
 }
