@@ -6,17 +6,6 @@ export default function AmbienceSection() {
 
   const zones = [
     {
-      title: 'Family Enclosures',
-      subtitle: 'Private, spacious, child-friendly cabins with dedicated table service, warm lantern glow, and comfortable traditional seating for the whole family.',
-      image: '/images/ambience/family-cabin.jpg',
-      features: [
-        '6–10 seater private wooden cabins',
-        'Traditional low seating & cushioned benches',
-        'Fast family & children priority service',
-        'Cozy, noise-buffered atmosphere',
-      ],
-    },
-    {
       title: 'Charpai Garden',
       subtitle: 'Traditional woven rope charpais under the night sky. Steaming hot creamy cutting chai, live tandoor aromas, and endless conversations with friends.',
       image: '/images/ambience/charpai-chai.jpg',
@@ -25,6 +14,17 @@ export default function AmbienceSection() {
         'Steaming cutting chai & late-night snacks',
         'Fairy string lights & rustic kerosene lanterns',
         'Open breeze & highway night ambience',
+      ],
+    },
+    {
+      title: 'Family Enclosures',
+      subtitle: 'Private, spacious, child-friendly cabins with dedicated table service, warm lantern glow, and comfortable traditional seating for the whole family.',
+      image: '/images/ambience/family-cabin.jpg',
+      features: [
+        '6–10 seater private wooden cabins',
+        'Traditional low seating & cushioned benches',
+        'Fast family & children priority service',
+        'Cozy, noise-buffered atmosphere',
       ],
     },
     {
@@ -55,7 +55,7 @@ export default function AmbienceSection() {
             Three ways to <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>sit down.</span>
           </h2>
           <p className="body-lg" style={{ color: 'var(--muted)', maxWidth: '540px' }}>
-            Whether it's a private family cabin, an open-air charpai under the stars, or the royal AC hall — every seat carries the same authentic highway hospitality.
+            Whether it's an open-air charpai under the stars, a private family cabin, or the royal AC hall — every seat carries the same authentic highway hospitality.
           </p>
         </div>
 

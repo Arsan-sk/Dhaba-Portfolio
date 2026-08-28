@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, MessageCircle, Utensils, Calendar } from 'lucide-react';
 import { getPhoneURL, getWhatsAppURL } from '../data/business';
 
 export default function FloatingActionBar() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    let prevScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always visible near top
+      if (currentScrollY <= 40) {
+        setIsVisible(true);
+      } 
+      // Scrolling down: slide down (hide off-screen)
+      else if (currentScrollY > prevScrollY && currentScrollY > 70) {
+        setIsVisible(false);
+      } 
+      // Scrolling up: slide up (reveal on-screen)
+      else if (currentScrollY < prevScrollY) {
+        setIsVisible(true);
+      }
+
+      prevScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div
       className="show-mobile"
@@ -21,6 +49,8 @@ export default function FloatingActionBar() {
         alignItems: 'center',
         justifyContent: 'space-around',
         boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.4)',
+        transform: isVisible ? 'translateY(0)' : 'translateY(120%)',
+        transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease',
       }}
     >
       <a
