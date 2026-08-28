@@ -15,8 +15,10 @@ export default function FeastCTA() {
         className="container"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-          minHeight: '480px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
+          minHeight: '440px',
+          alignItems: 'center',
+          gap: '2rem',
         }}
       >
         {/* Left — Text */}
@@ -26,7 +28,7 @@ export default function FeastCTA() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingRight: '3rem',
+            paddingRight: 'clamp(1rem, 3vw, 3rem)',
           }}
         >
           <h2
@@ -43,10 +45,10 @@ export default function FeastCTA() {
 
           <p
             style={{
-              fontSize: '1rem',
+              fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
               lineHeight: 1.65,
-              color: 'rgba(245, 238, 226, 0.8)',
-              maxWidth: '420px',
+              color: 'rgba(245, 238, 226, 0.88)',
+              maxWidth: '440px',
               marginBottom: '2rem',
             }}
           >
@@ -76,7 +78,8 @@ export default function FeastCTA() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '2rem',
+            padding: 'clamp(1.5rem, 4vw, 3rem)',
+            minHeight: '320px',
           }}
         >
           {/* Back photo */}
@@ -84,13 +87,13 @@ export default function FeastCTA() {
             className="tilt-right"
             style={{
               position: 'absolute',
-              width: '55%',
+              width: 'clamp(160px, 45%, 260px)',
               aspectRatio: '3 / 4',
-              top: '15%',
-              right: '10%',
+              top: '10%',
+              right: '12%',
               borderRadius: '8px',
               overflow: 'hidden',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.35)',
               zIndex: 1,
             }}
           >
@@ -110,11 +113,11 @@ export default function FeastCTA() {
             className="tilt-left"
             style={{
               position: 'relative',
-              width: '55%',
+              width: 'clamp(160px, 45%, 260px)',
               aspectRatio: '3 / 4',
               borderRadius: '8px',
               overflow: 'hidden',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.35)',
               zIndex: 2,
             }}
           >

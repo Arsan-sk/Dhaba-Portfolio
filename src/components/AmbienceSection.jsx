@@ -62,9 +62,9 @@ export default function AmbienceSection() {
         {/* Clean Animated Toggle Buttons */}
         <div
           style={{
-            display: 'inline-flex',
-            gap: '0.75rem',
-            marginBottom: '2.75rem',
+            display: 'flex',
+            gap: '0.65rem',
+            marginBottom: 'clamp(2rem, 4vw, 3rem)',
             flexWrap: 'wrap',
             alignItems: 'center',
           }}
@@ -76,8 +76,8 @@ export default function AmbienceSection() {
                 key={z.title}
                 onClick={() => setActiveZone(i)}
                 style={{
-                  padding: '0.65rem 1.6rem',
-                  fontSize: '0.85rem',
+                  padding: '0.65rem 1.4rem',
+                  fontSize: '0.82rem',
                   fontWeight: 600,
                   letterSpacing: '0.02em',
                   cursor: 'pointer',
@@ -88,6 +88,7 @@ export default function AmbienceSection() {
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                   transform: isActive ? 'scale(1.02)' : 'scale(1)',
                   boxShadow: isActive ? '0 4px 14px rgba(18, 16, 14, 0.18)' : 'none',
+                  minHeight: '44px',
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
@@ -108,12 +109,12 @@ export default function AmbienceSection() {
           })}
         </div>
 
-        {/* Zone Display Layout */}
+        {/* Zone Display Layout — Mobile-First Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 1fr)',
-            gap: 'clamp(2rem, 4.5vw, 4.5rem)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
+            gap: 'clamp(1.75rem, 4vw, 4rem)',
             alignItems: 'center',
           }}
         >
@@ -152,7 +153,7 @@ export default function AmbienceSection() {
               className="body-lg"
               style={{
                 color: '#5c5449',
-                marginBottom: '1.75rem',
+                marginBottom: '1.5rem',
                 maxWidth: '460px',
                 lineHeight: 1.6,
               }}
@@ -165,7 +166,7 @@ export default function AmbienceSection() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.75rem',
-                marginBottom: '2.25rem',
+                marginBottom: '2rem',
               }}
             >
               {zone.features.map((f, i) => (

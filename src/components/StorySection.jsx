@@ -14,8 +14,8 @@ export default function StorySection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 1fr)',
-            gap: 'clamp(2rem, 6vw, 6rem)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
+            gap: 'clamp(2rem, 5vw, 5rem)',
             alignItems: 'end',
           }}
         >
@@ -27,7 +27,7 @@ export default function StorySection() {
             >
               A table is never{' '}
               <br />
-              <span style={{ fontStyle: 'italic' }}>just a table.</span>
+              <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>just a table.</span>
             </h2>
           </div>
 
@@ -50,14 +50,14 @@ export default function StorySection() {
           </div>
         </div>
 
-        {/* Stat Strip */}
+        {/* Stat Strip — Responsive Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-            gap: '1.5rem',
-            marginTop: '4rem',
-            paddingTop: '3rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: 'clamp(1rem, 3vw, 2rem)',
+            marginTop: 'clamp(2.5rem, 5vw, 4rem)',
+            paddingTop: 'clamp(2rem, 4vw, 3rem)',
             borderTop: '1px solid var(--line)',
           }}
         >
@@ -71,10 +71,11 @@ export default function StorySection() {
               <div
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                  fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
                   fontWeight: 400,
                   color: 'var(--ember)',
                   marginBottom: '0.25rem',
+                  lineHeight: 1.1,
                 }}
               >
                 {stat.number}

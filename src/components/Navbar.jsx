@@ -16,14 +16,14 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
 
       // Enable blurred background when scrolled past top
-      setScrolled(currentScrollY > 40);
+      setScrolled(currentScrollY > 30);
 
       // If at the top of the page, always show navbar
-      if (currentScrollY <= 40) {
+      if (currentScrollY <= 30) {
         setIsVisible(true);
       } 
       // If scrolling down, swipe navbar up (hide)
-      else if (currentScrollY > prevScrollY && currentScrollY > 70) {
+      else if (currentScrollY > prevScrollY && currentScrollY > 60) {
         setIsVisible(false);
       } 
       // If scrolling up, swipe navbar down (reveal)
@@ -60,17 +60,17 @@ export default function Navbar() {
           right: 0,
           zIndex: 1000,
           transform: isVisible || isOpen ? 'translateY(0)' : 'translateY(-100%)',
-          background: scrolled ? 'rgba(18, 16, 14, 0.95)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(14px)' : 'none',
-          transition: 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease',
-          borderBottom: scrolled ? '1px solid var(--line)' : '1px solid transparent',
+          background: scrolled || isOpen ? 'rgba(18, 16, 14, 0.95)' : 'transparent',
+          backdropFilter: scrolled || isOpen ? 'blur(14px)' : 'none',
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease',
+          borderBottom: scrolled || isOpen ? '1px solid var(--line)' : '1px solid transparent',
         }}
       >
         <div
           style={{
             maxWidth: '1400px',
             margin: '0 auto',
-            padding: '1.25rem 2rem',
+            padding: 'clamp(0.85rem, 2vh, 1.25rem) clamp(1rem, 3vw, 2rem)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -99,7 +99,7 @@ export default function Navbar() {
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
               <span
                 style={{
-                  fontSize: '0.6rem',
+                  fontSize: '0.58rem',
                   fontWeight: 700,
                   letterSpacing: '0.15em',
                   color: 'var(--cream)',
@@ -111,7 +111,7 @@ export default function Navbar() {
               <span
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.25rem',
+                  fontSize: '1.2rem',
                   fontStyle: 'italic',
                   fontWeight: 600,
                   color: 'var(--gold)',
@@ -126,9 +126,9 @@ export default function Navbar() {
           {/* Desktop Nav Links */}
           <nav className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 style={{
                   fontSize: '0.78rem',
                   fontWeight: 700,
@@ -137,6 +137,7 @@ export default function Navbar() {
                   transition: 'opacity 0.2s ease, color 0.2s ease',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
+                  textDecoration: 'none',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.opacity = '1';
@@ -148,7 +149,7 @@ export default function Navbar() {
                 }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
             {/* CALL link */}
@@ -164,6 +165,7 @@ export default function Navbar() {
                 opacity: 0.85,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
+                textDecoration: 'none',
                 transition: 'opacity 0.2s ease, color 0.2s ease',
               }}
               onMouseEnter={(e) => {
@@ -184,13 +186,17 @@ export default function Navbar() {
           <div className="show-mobile" style={{ display: 'none' }}>
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle navigation menu"
               style={{
-                width: '40px',
-                height: '40px',
+                width: '44px',
+                height: '44px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'var(--cream)',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
               }}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -207,35 +213,46 @@ export default function Navbar() {
             inset: 0,
             zIndex: 999,
             background: 'var(--ink)',
-            padding: '6rem 2rem 2rem',
+            padding: '6rem 1.75rem 2rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2rem',
+            gap: '1.5rem',
+            overflowY: 'auto',
           }}
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.href}
               onClick={() => setIsOpen(false)}
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: '2rem',
+                fontSize: '1.75rem',
                 fontWeight: 400,
-                color: 'var(--cream)',
+                color: location.pathname === link.href ? 'var(--gold)' : 'var(--cream)',
                 borderBottom: '1px solid var(--line)',
-                paddingBottom: '1rem',
+                paddingBottom: '0.85rem',
+                textDecoration: 'none',
               }}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
 
-          <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <a href="/book" className="btn-ember" style={{ justifyContent: 'center' }}>
+          <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2rem' }}>
+            <Link
+              to="/book"
+              onClick={() => setIsOpen(false)}
+              className="btn-ember"
+              style={{ justifyContent: 'center', textDecoration: 'none' }}
+            >
               Book a Table
-            </a>
-            <a href={getPhoneURL()} className="btn-outline" style={{ justifyContent: 'center' }}>
+            </Link>
+            <a
+              href={getPhoneURL()}
+              className="btn-outline"
+              style={{ justifyContent: 'center', textDecoration: 'none' }}
+            >
               <Phone size={16} />
               {BUSINESS.phone}
             </a>

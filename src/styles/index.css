@@ -332,19 +332,67 @@ input, textarea, select {
   border-bottom: 1px solid var(--line);
 }
 
-/* ── Responsive ───────────────────────────────────────── */
+/* ── Responsive & Mobile-First Design System ──────────── */
+@media (max-width: 992px) {
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 768px) {
   .section-pad {
-    padding: 3.5rem 1.25rem;
+    padding: 3.75rem 1.25rem;
   }
   .section-pad-lg {
-    padding: 5rem 1.25rem;
+    padding: 4.5rem 1.25rem;
   }
   .hide-mobile {
     display: none !important;
   }
   .show-mobile {
     display: flex !important;
+  }
+  
+  /* Fluid mobile typography */
+  .headline-xl {
+    font-size: clamp(2.2rem, 9vw, 3.4rem);
+    line-height: 1.05;
+  }
+  .headline-lg {
+    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+    line-height: 1.1;
+  }
+  .headline-md {
+    font-size: clamp(1.35rem, 5vw, 1.8rem);
+    line-height: 1.2;
+  }
+  .body-lg {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* Touch target standard (min 44px) */
+  button, a.btn-ember, a.btn-outline, a.btn-outline-ink, input, select, textarea {
+    min-height: 44px;
+    font-size: 16px !important; /* Prevents auto-zoom on mobile iOS Safari */
+  }
+  
+  /* Mobile body clearance for fixed floating bottom bar */
+  body {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  
+  /* Horizontal scroll container for category filters */
+  .pills-scroll {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .pills-scroll::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -361,7 +409,7 @@ input, textarea, select {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -370,7 +418,7 @@ input, textarea, select {
 }
 
 .fade-in-up {
-  animation: fadeInUp 0.7s var(--ease-out) both;
+  animation: fadeInUp 0.6s var(--ease-out) both;
 }
 
 /* Stagger delays */
@@ -386,15 +434,15 @@ input, textarea, select {
 
 /* ── Monogram Badge ───────────────────────────────────── */
 .monogram {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 1.5px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--gold);
   letter-spacing: 0.05em;
@@ -412,12 +460,6 @@ input, textarea, select {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-}
-
-@media (max-width: 900px) {
-  .grid-2, .grid-3 {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ── Tilted Image Effect ──────────────────────────────── */

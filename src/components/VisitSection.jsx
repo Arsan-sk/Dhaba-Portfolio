@@ -17,7 +17,7 @@ export default function VisitSection() {
         className="container section-pad-lg"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.3fr)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
           gap: 'clamp(2rem, 4vw, 4rem)',
           alignItems: 'stretch',
         }}
@@ -38,7 +38,7 @@ export default function VisitSection() {
               <MapPin size={18} style={{ flexShrink: 0, marginTop: '0.15rem' }} />
               <div>
                 <div style={{ fontWeight: 700, marginBottom: '0.15rem' }}>{BUSINESS.name}</div>
-                <div style={{ fontSize: '0.9rem', opacity: 0.8, lineHeight: 1.5 }}>
+                <div style={{ fontSize: '0.9rem', opacity: 0.85, lineHeight: 1.5 }}>
                   {BUSINESS.address.full}
                 </div>
               </div>
@@ -84,10 +84,11 @@ export default function VisitSection() {
         {/* Right — Map */}
         <div
           style={{
-            borderRadius: '4px',
+            borderRadius: '6px',
             overflow: 'hidden',
-            minHeight: '360px',
+            minHeight: '320px',
             position: 'relative',
+            boxShadow: '0 8px 24px rgba(18, 16, 14, 0.15)',
           }}
         >
           <iframe
@@ -96,7 +97,7 @@ export default function VisitSection() {
             style={{
               width: '100%',
               height: '100%',
-              minHeight: '360px',
+              minHeight: '320px',
               border: 'none',
             }}
             loading="lazy"

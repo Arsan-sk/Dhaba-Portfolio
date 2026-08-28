@@ -23,19 +23,20 @@ export default function SignatureCravings() {
             display: 'flex',
             alignItems: 'flex-end',
             justifyContent: 'space-between',
-            marginBottom: '3.5rem',
+            marginBottom: 'clamp(2rem, 4vw, 3.5rem)',
             gap: '1rem',
             flexWrap: 'wrap',
           }}
         >
           <h2 className="headline-lg" style={{ color: 'var(--ink)' }}>
-            Meet the <span style={{ fontStyle: 'italic' }}>main event.</span>
+            Meet the <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>main event.</span>
           </h2>
 
           {/* Navigation arrows */}
           <div style={{ display: 'flex', gap: '0.5rem' }}>
             <button
               onClick={prev}
+              aria-label="Previous specialty dish"
               style={{
                 width: '44px',
                 height: '44px',
@@ -44,6 +45,8 @@ export default function SignatureCravings() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'var(--ink)',
+                background: 'transparent',
+                cursor: 'pointer',
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={(e) => {
@@ -59,6 +62,7 @@ export default function SignatureCravings() {
             </button>
             <button
               onClick={next}
+              aria-label="Next specialty dish"
               style={{
                 width: '44px',
                 height: '44px',
@@ -67,6 +71,8 @@ export default function SignatureCravings() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'var(--ink)',
+                background: 'transparent',
+                cursor: 'pointer',
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={(e) => {
@@ -83,12 +89,12 @@ export default function SignatureCravings() {
           </div>
         </div>
 
-        {/* Featured Dish Display */}
+        {/* Featured Dish Display — Responsive Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.3fr) minmax(0, 1fr)',
-            gap: 'clamp(2rem, 4vw, 4rem)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
+            gap: 'clamp(1.75rem, 4vw, 4rem)',
             alignItems: 'center',
           }}
         >
@@ -97,8 +103,9 @@ export default function SignatureCravings() {
             style={{
               aspectRatio: '4 / 3',
               overflow: 'hidden',
-              borderRadius: '8px',
+              borderRadius: '6px',
               position: 'relative',
+              boxShadow: '0 12px 28px rgba(18, 16, 14, 0.12)',
             }}
           >
             <img
@@ -120,7 +127,8 @@ export default function SignatureCravings() {
               className="label"
               style={{
                 color: 'var(--ember)',
-                marginBottom: '0.75rem',
+                marginBottom: '0.6rem',
+                fontSize: '0.72rem',
               }}
             >
               {dish.category.replace('-', ' & ').toUpperCase()} · {dish.diet === 'veg' ? '● Veg' : '● Non-Veg'}
@@ -130,7 +138,7 @@ export default function SignatureCravings() {
               className="headline-md"
               style={{
                 color: 'var(--ink)',
-                marginBottom: '1rem',
+                marginBottom: '0.75rem',
               }}
             >
               {dish.name}
@@ -139,9 +147,10 @@ export default function SignatureCravings() {
             <p
               className="body-lg"
               style={{
-                color: 'var(--muted)',
+                color: '#524b42',
                 marginBottom: '1.5rem',
-                maxWidth: '440px',
+                maxWidth: '460px',
+                lineHeight: 1.6,
               }}
             >
               {dish.description}
@@ -152,18 +161,18 @@ export default function SignatureCravings() {
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '0.5rem',
-                marginBottom: '2rem',
+                gap: '0.4rem',
+                marginBottom: '1.75rem',
               }}
             >
               {dish.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
                   style={{
-                    padding: '0.35rem 0.85rem',
+                    padding: '0.3rem 0.75rem',
                     border: '1px solid var(--line-dark)',
                     borderRadius: '9999px',
-                    fontSize: '0.75rem',
+                    fontSize: '0.72rem',
                     fontWeight: 500,
                     color: 'var(--muted)',
                   }}
@@ -183,7 +192,7 @@ export default function SignatureCravings() {
             {/* Pagination indicator */}
             <div
               style={{
-                marginTop: '2rem',
+                marginTop: '1.75rem',
                 display: 'flex',
                 gap: '0.35rem',
                 alignItems: 'center',

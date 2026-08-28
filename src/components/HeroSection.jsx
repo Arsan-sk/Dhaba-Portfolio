@@ -23,8 +23,8 @@ export default function HeroSection() {
       id="hero"
       style={{
         position: 'relative',
-        height: '100vh',
-        minHeight: '100vh',
+        height: '100dvh',
+        minHeight: '520px',
         overflow: 'hidden',
         background: 'var(--ink)',
       }}
@@ -54,7 +54,7 @@ export default function HeroSection() {
         </div>
       ))}
 
-      {/* Deep Radial Vignette Overlay — dark corners & edges framing the scene */}
+      {/* Deep Radial Vignette Overlay */}
       <div
         style={{
           position: 'absolute',
@@ -65,13 +65,13 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Directional Left-to-Right & Top-to-Bottom Contrast Gradient */}
+      {/* Directional Gradients for High Legibility on All Screen Sizes */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: 2,
-          background: 'linear-gradient(90deg, rgba(18,16,14,0.88) 0%, rgba(18,16,14,0.55) 42%, rgba(18,16,14,0.15) 70%, rgba(18,16,14,0.75) 100%)',
+          background: 'linear-gradient(90deg, rgba(18,16,14,0.92) 0%, rgba(18,16,14,0.6) 45%, rgba(18,16,14,0.2) 75%, rgba(18,16,14,0.8) 100%)',
           pointerEvents: 'none',
         }}
       />
@@ -81,12 +81,12 @@ export default function HeroSection() {
           position: 'absolute',
           inset: 0,
           zIndex: 2,
-          background: 'linear-gradient(180deg, rgba(18,16,14,0.72) 0%, rgba(18,16,14,0.0) 25%, rgba(18,16,14,0.0) 50%, rgba(18,16,14,0.55) 78%, rgba(18,16,14,0.96) 100%)',
+          background: 'linear-gradient(180deg, rgba(18,16,14,0.75) 0%, rgba(18,16,14,0.05) 20%, rgba(18,16,14,0.15) 50%, rgba(18,16,14,0.65) 80%, rgba(18,16,14,0.96) 100%)',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Content Container — Vertically Balanced Layout */}
+      {/* Content Container — Mobile-First Balanced Sizing */}
       <div
         style={{
           position: 'relative',
@@ -94,7 +94,7 @@ export default function HeroSection() {
           height: '100%',
           maxWidth: '1400px',
           margin: '0 auto',
-          padding: '6.5rem 2.5rem 3.5rem',
+          padding: 'clamp(5rem, 10vh, 6.5rem) clamp(1.25rem, 4vw, 2.5rem) clamp(2rem, 5vh, 3.5rem)',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -106,24 +106,24 @@ export default function HeroSection() {
             display: 'flex',
             alignItems: 'flex-end',
             justifyContent: 'space-between',
-            gap: '2.5rem',
+            gap: '2rem',
             width: '100%',
           }}
         >
-          {/* Left: Eyebrow + Huge Bold Serif Headline + Subtitle + Action Buttons */}
-          <div style={{ maxWidth: '850px' }}>
+          {/* Left: Eyebrow + Headline + Subtitle + Action Buttons */}
+          <div style={{ maxWidth: '850px', width: '100%' }}>
             {/* Eyebrow */}
             <div
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.75rem',
-                marginBottom: '1.25rem',
+                gap: '0.6rem',
+                marginBottom: '1rem',
               }}
             >
               <span
                 style={{
-                  width: '32px',
+                  width: '28px',
                   height: '1.5px',
                   background: 'var(--gold)',
                   display: 'inline-block',
@@ -131,7 +131,7 @@ export default function HeroSection() {
               />
               <span
                 style={{
-                  fontSize: '0.75rem',
+                  fontSize: 'clamp(0.65rem, 2vw, 0.75rem)',
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   letterSpacing: '0.18em',
@@ -142,17 +142,17 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* Headline — Bold, commanding, Playfair serif */}
+            {/* Headline — Responsive typography with clamp */}
             <h1
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(3.4rem, 6.4vw, 5.8rem)',
+                fontSize: 'clamp(2.4rem, 6.5vw, 5.6rem)',
                 fontWeight: 700,
-                lineHeight: 1.0,
+                lineHeight: 1.02,
                 letterSpacing: '-0.025em',
                 color: 'var(--cream)',
-                marginBottom: '1.25rem',
-                textShadow: '0 3px 28px rgba(0,0,0,0.7)',
+                marginBottom: '1rem',
+                textShadow: '0 3px 24px rgba(0,0,0,0.8)',
               }}
             >
               Where the road
@@ -165,12 +165,12 @@ export default function HeroSection() {
             {/* Subtitle */}
             <p
               style={{
-                fontSize: 'clamp(1.05rem, 1.35vw, 1.2rem)',
+                fontSize: 'clamp(0.95rem, 2.2vw, 1.18rem)',
                 color: 'rgba(245, 238, 226, 0.92)',
-                lineHeight: 1.6,
-                maxWidth: '560px',
-                marginBottom: '2.25rem',
-                textShadow: '0 2px 16px rgba(0,0,0,0.7)',
+                lineHeight: 1.55,
+                maxWidth: '540px',
+                marginBottom: 'clamp(1.5rem, 3.5vh, 2.25rem)',
+                textShadow: '0 2px 14px rgba(0,0,0,0.8)',
               }}
             >
               Bold plates. Open tables. Late-night cravings sorted.
@@ -181,7 +181,7 @@ export default function HeroSection() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '1.5rem',
+                gap: '1rem',
                 flexWrap: 'wrap',
               }}
             >
@@ -191,13 +191,13 @@ export default function HeroSection() {
                 style={{
                   background: 'var(--ember)',
                   color: 'var(--cream)',
-                  padding: '0.95rem 2rem',
-                  fontSize: '0.88rem',
+                  padding: '0.85rem 1.85rem',
+                  fontSize: '0.85rem',
                   fontWeight: 700,
                   letterSpacing: '0.02em',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.55rem',
+                  gap: '0.5rem',
                   textDecoration: 'none',
                   transition: 'background 0.25s ease, transform 0.2s ease',
                   border: 'none',
@@ -213,7 +213,7 @@ export default function HeroSection() {
                 }}
               >
                 Explore the Full Menu
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={16} />
               </a>
 
               {/* Secondary Get Directions Link */}
@@ -225,7 +225,7 @@ export default function HeroSection() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   fontWeight: 700,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
@@ -233,7 +233,8 @@ export default function HeroSection() {
                   textDecoration: 'none',
                   transition: 'color 0.2s ease, opacity 0.2s ease',
                   opacity: 0.95,
-                  textShadow: '0 1px 8px rgba(0,0,0,0.5)',
+                  padding: '0.5rem 0',
+                  textShadow: '0 1px 8px rgba(0,0,0,0.6)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = 'var(--gold)';
@@ -244,13 +245,13 @@ export default function HeroSection() {
                   e.currentTarget.style.opacity = '0.95';
                 }}
               >
-                <MapPin size={15} color="var(--gold)" />
+                <MapPin size={14} color="var(--gold)" />
                 GET DIRECTIONS
               </a>
             </div>
           </div>
 
-          {/* Right: ND Monogram (Tilted ~18deg) & Scroll Indicator */}
+          {/* Right: ND Monogram (Tilted ~18deg) & Animated Slide Indicators */}
           <div
             className="hide-mobile"
             style={{
@@ -258,7 +259,7 @@ export default function HeroSection() {
               flexDirection: 'column',
               alignItems: 'center',
               flexShrink: 0,
-              paddingBottom: '0.75rem',
+              paddingBottom: '0.5rem',
               userSelect: 'none',
             }}
           >
@@ -348,7 +349,7 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* SCROLL TO TASTE THE STORY (White text) */}
+            {/* SCROLL TO TASTE THE STORY */}
             <span
               style={{
                 fontSize: '0.56rem',

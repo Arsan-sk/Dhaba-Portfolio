@@ -11,7 +11,7 @@ export default function GoodFoodSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
             gap: 'clamp(2rem, 5vw, 5rem)',
             alignItems: 'center',
           }}
@@ -22,6 +22,7 @@ export default function GoodFoodSection() {
               aspectRatio: '4 / 5',
               borderRadius: '8px',
               overflow: 'hidden',
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.4)',
             }}
           >
             <img
@@ -44,7 +45,7 @@ export default function GoodFoodSection() {
 
             <p
               className="body-lg"
-              style={{ marginBottom: '1rem', maxWidth: '420px' }}
+              style={{ marginBottom: '1rem', maxWidth: '440px' }}
             >
               What starts as a quick highway pit-stop turns into an
               hour-long celebration. One plate becomes three. Strangers
@@ -53,7 +54,7 @@ export default function GoodFoodSection() {
 
             <p
               className="body-lg"
-              style={{ marginBottom: '2rem', maxWidth: '420px' }}
+              style={{ marginBottom: '2rem', maxWidth: '440px' }}
             >
               Every dish is portioned to share. Every table is set
               for stories. Come for the food, stay for the chaos.

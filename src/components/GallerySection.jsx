@@ -30,9 +30,9 @@ export default function GallerySection() {
     >
       <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
           <h2 className="headline-lg" style={{ color: 'var(--cream)', marginBottom: '0.75rem' }}>
-            Moments at the <span style={{ fontStyle: 'italic' }}>table.</span>
+            Moments at the <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>table.</span>
           </h2>
           <p className="body-lg" style={{ maxWidth: '520px' }}>
             Smoky tandoors, loaded platters, late-night laughter, and the
@@ -40,25 +40,26 @@ export default function GallerySection() {
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+        {/* Filter Pills with Horizontal Scroll on Mobile */}
+        <div className="pills-scroll" style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.5rem', marginBottom: '2rem' }}>
           {GALLERY_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               className={`pill ${activeCategory === cat.id ? 'active' : ''}`}
+              style={{ flexShrink: 0, fontSize: '0.78rem' }}
             >
               {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Photo Grid */}
+        {/* Photo Grid — Mobile friendly */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '3px',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
+            gap: 'clamp(4px, 1vw, 8px)',
           }}
         >
           {filteredItems.map((item, index) => (
@@ -70,6 +71,7 @@ export default function GallerySection() {
                 aspectRatio: item.size === 'tall' ? '3 / 4' : '4 / 3',
                 overflow: 'hidden',
                 cursor: 'pointer',
+                borderRadius: '4px',
               }}
             >
               <img
@@ -92,8 +94,8 @@ export default function GallerySection() {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: '3rem 1.25rem 1.25rem',
-                  background: 'linear-gradient(transparent, rgba(18, 16, 14, 0.85))',
+                  padding: '3rem 1rem 1rem',
+                  background: 'linear-gradient(transparent, rgba(18, 16, 14, 0.9))',
                 }}
               >
                 <h3
@@ -116,17 +118,17 @@ export default function GallerySection() {
                   position: 'absolute',
                   top: '0.75rem',
                   right: '0.75rem',
-                  width: '30px',
-                  height: '30px',
+                  width: '32px',
+                  height: '32px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'rgba(18, 16, 14, 0.6)',
+                  background: 'rgba(18, 16, 14, 0.7)',
+                  borderRadius: '50%',
                   color: 'var(--cream)',
-                  opacity: 0.6,
                 }}
               >
-                <Eye size={14} />
+                <Eye size={15} />
               </div>
             </div>
           ))}
@@ -140,93 +142,113 @@ export default function GallerySection() {
             position: 'fixed',
             inset: 0,
             zIndex: 2000,
-            background: 'rgba(18, 16, 14, 0.95)',
+            background: 'rgba(18, 16, 14, 0.96)',
             backdropFilter: 'blur(20px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1.5rem',
+            padding: '1rem',
           }}
           onClick={closeLightbox}
         >
+          {/* Close button */}
           <button
             onClick={closeLightbox}
             style={{
               position: 'absolute',
-              top: '1.5rem',
-              right: '1.5rem',
+              top: '1.25rem',
+              right: '1.25rem',
               color: 'var(--cream)',
-              zIndex: 2010,
+              background: 'rgba(0, 0, 0, 0.5)',
+              border: 'none',
+              borderRadius: '50%',
+              width: '44px',
+              height: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              zIndex: 10,
             }}
           >
-            <X size={24} />
+            <X size={22} />
           </button>
 
+          {/* Prev button */}
           <button
             onClick={prevImage}
             style={{
               position: 'absolute',
-              left: '1.5rem',
+              left: '1rem',
+              color: 'var(--cream)',
+              background: 'rgba(0, 0, 0, 0.5)',
+              border: 'none',
+              borderRadius: '50%',
               width: '44px',
               height: '44px',
-              border: '1px solid var(--line)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--cream)',
-              zIndex: 2010,
+              cursor: 'pointer',
+              zIndex: 10,
             }}
           >
             <ChevronLeft size={24} />
           </button>
 
+          {/* Image & Info */}
+          <div
+            style={{
+              maxWidth: '850px',
+              width: '100%',
+              maxHeight: '85vh',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={filteredItems[lightboxIndex]?.image}
+              alt={filteredItems[lightboxIndex]?.title}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '70vh',
+                objectFit: 'contain',
+                borderRadius: '4px',
+              }}
+            />
+            <div style={{ marginTop: '1rem', textAlign: 'center', color: 'var(--cream)' }}>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', marginBottom: '0.25rem' }}>
+                {filteredItems[lightboxIndex]?.title}
+              </h3>
+              <p style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
+                {filteredItems[lightboxIndex]?.subtitle}
+              </p>
+            </div>
+          </div>
+
+          {/* Next button */}
           <button
             onClick={nextImage}
             style={{
               position: 'absolute',
-              right: '1.5rem',
+              right: '1rem',
+              color: 'var(--cream)',
+              background: 'rgba(0, 0, 0, 0.5)',
+              border: 'none',
+              borderRadius: '50%',
               width: '44px',
               height: '44px',
-              border: '1px solid var(--line)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--cream)',
-              zIndex: 2010,
+              cursor: 'pointer',
+              zIndex: 10,
             }}
           >
             <ChevronRight size={24} />
           </button>
-
-          <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: '900px', width: '100%', textAlign: 'center' }}>
-            <img
-              src={filteredItems[lightboxIndex].image}
-              alt={filteredItems[lightboxIndex].title}
-              style={{
-                maxWidth: '100%',
-                maxHeight: '72vh',
-                objectFit: 'contain',
-                margin: '0 auto',
-              }}
-            />
-            <div style={{ marginTop: '1.25rem' }}>
-              <h3
-                style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: '1.3rem',
-                  color: 'var(--cream)',
-                }}
-              >
-                {filteredItems[lightboxIndex].title}
-              </h3>
-              <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginTop: '0.25rem' }}>
-                {filteredItems[lightboxIndex].subtitle}
-              </p>
-              <p style={{ fontSize: '0.7rem', color: 'var(--muted)', marginTop: '0.4rem' }}>
-                {lightboxIndex + 1} / {filteredItems.length}
-              </p>
-            </div>
-          </div>
         </div>
       )}
     </section>

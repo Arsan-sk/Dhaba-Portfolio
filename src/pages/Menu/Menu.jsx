@@ -24,7 +24,7 @@ export default function MenuPage() {
 
   return (
     <div style={{ paddingTop: '5rem', background: 'var(--ink)', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '3rem 2rem 6rem' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: 'clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) 6rem' }}>
         {/* Header */}
         <div style={{ marginBottom: '0.5rem' }}>
           <span className="label" style={{ color: 'var(--ember)', marginBottom: '0.5rem', display: 'block' }}>
@@ -41,102 +41,113 @@ export default function MenuPage() {
           <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>appetite.</span>
         </h1>
 
-        <p className="body-lg" style={{ maxWidth: '520px', marginBottom: '3rem' }}>
+        <p className="body-lg" style={{ maxWidth: '520px', marginBottom: '2.5rem' }}>
           Fire-roasted tandoori, slow-dum biryanis, coastal seafood, and
           everything in between. Tap any dish to learn more.
         </p>
 
-        {/* Filters Row */}
+        {/* Filters Controls */}
         <div
           style={{
             display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '0.6rem',
+            flexDirection: 'column',
+            gap: '1.25rem',
             marginBottom: '2.5rem',
             paddingBottom: '1.5rem',
             borderBottom: '1px solid var(--line)',
           }}
         >
-          {MENU_CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`pill ${activeCategory === cat.id ? 'active' : ''}`}
-              style={{ fontSize: '0.78rem' }}
-            >
-              {cat.name}
-            </button>
-          ))}
-
-          <div style={{ flex: 1 }} />
-
-          {/* Diet toggles */}
-          <div style={{ display: 'flex', gap: '0.4rem' }}>
-            {[
-              { id: 'all', label: 'All' },
-              { id: 'veg', label: '● Veg' },
-              { id: 'non-veg', label: '● Non-Veg' },
-            ].map((d) => (
+          {/* Horizontal Scrolling Categories */}
+          <div className="pills-scroll" style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.25rem' }}>
+            {MENU_CATEGORIES.map((cat) => (
               <button
-                key={d.id}
-                onClick={() => setDietFilter(d.id)}
-                style={{
-                  padding: '0.35rem 0.75rem',
-                  fontSize: '0.72rem',
-                  fontWeight: 600,
-                  border: '1px solid var(--line)',
-                  borderRadius: '9999px',
-                  background: dietFilter === d.id ? 'var(--cream)' : 'transparent',
-                  color: dietFilter === d.id ? 'var(--ink)' : 'var(--muted)',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`pill ${activeCategory === cat.id ? 'active' : ''}`}
+                style={{ fontSize: '0.78rem', flexShrink: 0 }}
               >
-                {d.label}
+                {cat.name}
               </button>
             ))}
           </div>
 
-          {/* Search */}
-          <div style={{ position: 'relative', minWidth: '180px' }}>
-            <Search
-              size={14}
-              style={{
-                position: 'absolute',
-                left: '0.7rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: 'var(--muted)',
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.5rem 0.7rem 0.5rem 2rem',
-                border: '1px solid var(--line)',
-                borderRadius: '9999px',
-                color: 'var(--cream)',
-                fontSize: '0.8rem',
-              }}
-            />
+          {/* Search + Diet Filter Row */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '1rem',
+              flexWrap: 'wrap',
+            }}
+          >
+            {/* Diet toggles */}
+            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+              {[
+                { id: 'all', label: 'All' },
+                { id: 'veg', label: '● Veg' },
+                { id: 'non-veg', label: '● Non-Veg' },
+              ].map((d) => (
+                <button
+                  key={d.id}
+                  onClick={() => setDietFilter(d.id)}
+                  style={{
+                    padding: '0.4rem 0.85rem',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    border: '1px solid var(--line)',
+                    borderRadius: '9999px',
+                    background: dietFilter === d.id ? 'var(--cream)' : 'transparent',
+                    color: dietFilter === d.id ? 'var(--ink)' : 'var(--muted)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  {d.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Search */}
+            <div style={{ position: 'relative', minWidth: '220px', flex: '1', maxWidth: '340px' }}>
+              <Search
+                size={15}
+                style={{
+                  position: 'absolute',
+                  left: '0.85rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  color: 'var(--muted)',
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Search dishes, flavours, tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.55rem 0.85rem 0.55rem 2.3rem',
+                  border: '1px solid var(--line)',
+                  borderRadius: '9999px',
+                  color: 'var(--cream)',
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  fontSize: '0.82rem',
+                }}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Dish Card Grid — editorial image-first layout */}
+        {/* Dish Card Grid — responsive grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '1.75rem',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
+            gap: 'clamp(1.25rem, 3vw, 2rem)',
           }}
         >
           {filtered.map((dish, index) => {
-            // First dish gets a larger featured card
             const isFeatured = index === 0;
 
             return (
@@ -145,11 +156,15 @@ export default function MenuPage() {
                 onClick={() => setSelectedDish(dish)}
                 style={{
                   cursor: 'pointer',
-                  gridColumn: isFeatured ? 'span 2' : 'span 1',
+                  gridColumn: isFeatured ? 'span 1' : 'span 1',
                   display: 'flex',
-                  flexDirection: isFeatured ? 'row' : 'column',
-                  gap: isFeatured ? '1.5rem' : '0',
+                  flexDirection: 'column',
+                  gap: '0.75rem',
                   transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(245, 238, 226, 0.08)',
+                  borderRadius: '8px',
+                  padding: '0.85rem',
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-4px)')}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
@@ -157,10 +172,9 @@ export default function MenuPage() {
                 {/* Image */}
                 <div
                   style={{
-                    aspectRatio: isFeatured ? '16 / 10' : '4 / 3',
+                    aspectRatio: '16 / 11',
                     overflow: 'hidden',
                     borderRadius: '6px',
-                    flex: isFeatured ? '1.4' : 'none',
                   }}
                 >
                   <img
@@ -180,11 +194,8 @@ export default function MenuPage() {
                 {/* Info */}
                 <div
                   style={{
-                    padding: isFeatured ? '0.5rem 0' : '1rem 0 0.5rem',
-                    flex: isFeatured ? '1' : 'none',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: isFeatured ? 'center' : 'flex-start',
                   }}
                 >
                   {/* Diet label */}
@@ -195,7 +206,7 @@ export default function MenuPage() {
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
                       color: dish.diet === 'veg' ? '#4ade80' : 'var(--ember)',
-                      marginBottom: '0.35rem',
+                      marginBottom: '0.3rem',
                     }}
                   >
                     {dish.diet === 'veg' ? '● VEG' : '● NON-VEG'} · {dish.category.replace('-', ' & ')}
@@ -205,51 +216,49 @@ export default function MenuPage() {
                   <h3
                     style={{
                       fontFamily: 'var(--font-serif)',
-                      fontSize: isFeatured ? '1.6rem' : '1.1rem',
+                      fontSize: '1.15rem',
                       fontWeight: 500,
                       color: 'var(--cream)',
                       lineHeight: 1.25,
-                      marginBottom: '0.4rem',
+                      marginBottom: '0.35rem',
                     }}
                   >
                     {dish.name}
                   </h3>
 
-                  {/* Description (featured only) */}
-                  {isFeatured && (
-                    <p
-                      style={{
-                        fontSize: '0.88rem',
-                        color: 'var(--muted)',
-                        lineHeight: 1.55,
-                        marginBottom: '1rem',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {dish.description}
-                    </p>
-                  )}
+                  {/* Description preview */}
+                  <p
+                    style={{
+                      fontSize: '0.82rem',
+                      color: 'var(--muted)',
+                      lineHeight: 1.5,
+                      marginBottom: '0.75rem',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {dish.description}
+                  </p>
 
                   {/* Tags */}
-                  <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap' }}>
-                    {dish.tags.slice(0, isFeatured ? 4 : 2).map((tag) => (
+                  <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                    {dish.tags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
                         style={{
                           padding: '0.15rem 0.5rem',
                           border: '1px solid var(--line)',
                           borderRadius: '9999px',
-                          fontSize: '0.6rem',
+                          fontSize: '0.62rem',
                           color: 'var(--muted)',
                         }}
                       >
                         {tag}
                       </span>
                     ))}
-                    <span style={{ fontSize: '0.75rem', marginLeft: '0.25rem' }}>
+                    <span style={{ fontSize: '0.75rem', marginLeft: 'auto' }}>
                       {'🌶️'.repeat(dish.spiceLevel)}
                     </span>
                   </div>
@@ -261,7 +270,7 @@ export default function MenuPage() {
 
         {filtered.length === 0 && (
           <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'var(--muted)' }}>
-            <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>No dishes found.</p>
+            <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>No dishes found matching your search.</p>
             <button
               onClick={() => {
                 setSearchTerm('');
@@ -270,13 +279,13 @@ export default function MenuPage() {
               }}
               className="btn-text"
             >
-              Clear filters <ArrowRight size={14} />
+              Clear all filters <ArrowRight size={14} />
             </button>
           </div>
         )}
       </div>
 
-      {/* Dish Detail Modal */}
+      {/* Dish Detail Modal — Mobile responsive card */}
       {selectedDish && (
         <div
           style={{
@@ -288,7 +297,7 @@ export default function MenuPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1.5rem',
+            padding: 'clamp(0.75rem, 3vw, 1.5rem)',
           }}
           onClick={() => setSelectedDish(null)}
         >
@@ -299,13 +308,16 @@ export default function MenuPage() {
               maxWidth: '720px',
               width: '100%',
               maxHeight: '90vh',
-              overflow: 'auto',
+              overflowY: 'auto',
               display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+              position: 'relative',
+              borderRadius: '6px',
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ minHeight: '300px' }}>
+            {/* Image */}
+            <div style={{ minHeight: '240px', maxHeight: '360px' }}>
               <img
                 src={selectedDish.image}
                 alt={selectedDish.name}
@@ -313,41 +325,56 @@ export default function MenuPage() {
               />
             </div>
 
-            <div style={{ padding: '2rem', position: 'relative' }}>
+            {/* Info */}
+            <div style={{ padding: 'clamp(1.25rem, 3vw, 2rem)', position: 'relative' }}>
               <button
                 onClick={() => setSelectedDish(null)}
-                style={{ position: 'absolute', top: '1rem', right: '1rem', color: 'var(--muted)' }}
+                style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  color: 'var(--muted)',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                }}
               >
-                <X size={20} />
+                <X size={18} />
               </button>
 
-              <div className="label" style={{ color: 'var(--ember)', marginBottom: '0.75rem' }}>
+              <div className="label" style={{ color: 'var(--ember)', marginBottom: '0.6rem', fontSize: '0.72rem' }}>
                 {selectedDish.category.replace('-', ' & ')} · {selectedDish.diet === 'veg' ? '● Veg' : '● Non-Veg'}
               </div>
 
-              <h3 className="headline-sm" style={{ color: 'var(--cream)', marginBottom: '1rem' }}>
+              <h3 className="headline-sm" style={{ color: 'var(--cream)', marginBottom: '0.75rem' }}>
                 {selectedDish.name}
               </h3>
 
-              <p className="body-sm" style={{ marginBottom: '1.5rem' }}>
+              <p className="body-sm" style={{ marginBottom: '1.25rem', lineHeight: 1.6 }}>
                 {selectedDish.description}
               </p>
 
-              <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '1.5rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-                <div><strong style={{ color: 'var(--cream)' }}>Prep</strong> {selectedDish.prepTime}</div>
-                <div><strong style={{ color: 'var(--cream)' }}>Serves</strong> {selectedDish.serves}</div>
-                <div><strong style={{ color: 'var(--cream)' }}>Heat</strong> {'🌶️'.repeat(selectedDish.spiceLevel)}</div>
+              <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '1.25rem', fontSize: '0.8rem', color: 'var(--muted)', flexWrap: 'wrap' }}>
+                <div><strong style={{ color: 'var(--cream)' }}>Prep:</strong> {selectedDish.prepTime}</div>
+                <div><strong style={{ color: 'var(--cream)' }}>Serves:</strong> {selectedDish.serves}</div>
+                <div><strong style={{ color: 'var(--cream)' }}>Heat:</strong> {'🌶️'.repeat(selectedDish.spiceLevel)}</div>
               </div>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1.5rem' }}>
                 {selectedDish.tags.map((tag) => (
                   <span
                     key={tag}
                     style={{
-                      padding: '0.25rem 0.65rem',
+                      padding: '0.2rem 0.6rem',
                       border: '1px solid var(--line)',
                       borderRadius: '9999px',
-                      fontSize: '0.7rem',
+                      fontSize: '0.68rem',
                       color: 'var(--muted)',
                     }}
                   >
@@ -356,8 +383,17 @@ export default function MenuPage() {
                 ))}
               </div>
 
-              <a href="/book" className="btn-ember" style={{ fontSize: '0.8rem' }}>
-                Reserve & Order <ArrowRight size={14} />
+              <a
+                href="/book"
+                className="btn-ember"
+                style={{
+                  fontSize: '0.85rem',
+                  display: 'inline-flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                }}
+              >
+                Reserve Table & Order <ArrowRight size={14} />
               </a>
             </div>
           </div>
