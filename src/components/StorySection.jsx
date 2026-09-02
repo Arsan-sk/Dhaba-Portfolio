@@ -37,15 +37,15 @@ export default function StorySection() {
               className="body-lg"
               style={{ marginBottom: '1.25rem' }}
             >
-              Parked on the Nashik&ndash;Mumbai highway since day one, Nawab Dhaba
-              is where long hauls turn into long tables &mdash; overflowing with
-              charcoal-kissed tandoori, hand-ground masalas, and the kind of
-              hospitality that makes strangers share a chutney.
+              Relaxed roadside dining meets warm hospitality at Dilli Darbar Dhaba,
+              where family tables, outdoor seating, and a playful atmosphere turn a
+              quick stop into a proper feast. Classic dhaba favourites are served with
+              the kind of comfort that keeps guests coming back.
             </p>
             <p className="body-lg">
-              Whether you arrive at noon with family or pull in past midnight
-              with friends, every seat here carries the same promise: honest fire,
-              honest food, honestly too much of it.
+              Whether you arrive for an afternoon meal or a late-night craving,
+              every seat here carries the same promise: hearty Indian comfort food,
+              welcoming service, and a laid-back setting made for gathering.
             </p>
           </div>
         </div>

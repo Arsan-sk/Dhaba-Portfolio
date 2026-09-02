@@ -138,7 +138,7 @@ export default function HeroSection() {
                   color: 'var(--gold)',
                 }}
               >
-                NASHIK ROAD VILLAGE · BHIWANDI
+                SAWANDHE · MAHARASHTRA 421302
               </span>
             </div>
 
@@ -300,7 +300,7 @@ export default function HeroSection() {
                   margin: '2px 0',
                 }}
               >
-                {/* N — italic serif */}
+                {/* D — italic serif */}
                 <span
                   style={{
                     fontFamily: 'var(--font-serif)',
@@ -313,7 +313,7 @@ export default function HeroSection() {
                     textShadow: '0 2px 14px rgba(0,0,0,0.7)',
                   }}
                 >
-                  N
+                  D
                 </span>
                 {/* D — bold upright serif */}
                 <span

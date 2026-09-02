@@ -1,37 +1,37 @@
 /**
- * Nawab Dhaba LLP — Centralized Business Configuration
+ * Dilli Darbar Dhaba LLP — Centralized Business Configuration
  * All business data in one place. Easy to update.
  */
 
 export const BUSINESS = {
-  name: 'Nawab Dhaba',
-  legalName: 'NAWAB DHABA LLP',
+  name: 'Dilli Darbar Dhaba',
+  legalName: 'DILLI DARBAR DHABA LLP',
   tagline: 'Come Hungry.',
   
   // Contact
-  phone: '077688 85646',
-  phoneClean: '917768885646', // for WhatsApp/tel links
-  whatsappNumber: '917768885646',
+  phone: '077579 91800',
+  phoneClean: '917757991800', // for WhatsApp/tel links
+  whatsappNumber: '917757991800',
   
   // Location
   address: {
-    line1: 'Nashik Road Village, Bhinar',
-    line2: 'Bhiwandi, Maharashtra 421302',
-    full: 'Nashik Road Village, Bhinar, Bhiwandi, Maharashtra 421302',
+    line1: 'Sawandhe',
+    line2: 'Maharashtra 421302',
+    full: 'Sawandhe, Maharashtra 421302',
   },
-  googleMapsUrl: 'https://maps.google.com/?q=Nawab+Dhaba+Nashik+Road+Bhiwandi',
+  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Dilli+Darbar+Dhaba+Sawandhe+Maharashtra+421302',
   coordinates: { lat: 19.3, lng: 73.05 }, // approximate
   
-  // Hours (configurable placeholder)
+  // Hours
   hours: {
-    weekdays: '11:00 AM – 11:00 PM',
-    weekends: '11:00 AM – 11:30 PM',
-    display: 'Open Daily · 11 AM – 11 PM',
+    weekdays: 'Open · Closes 3 AM',
+    weekends: 'Open · Closes 3 AM',
+    display: 'Open · Closes 3 AM',
   },
   
-  // Social (placeholder)
+  // Social
   social: {
-    instagram: '#',
+    instagram: 'https://www.instagram.com/dilli_darbar_dhaba?igsh=cGd3bTVtbmdnOHN3',
     facebook: '#',
   },
 }
@@ -40,7 +40,7 @@ export const BUSINESS = {
  * Generate a WhatsApp booking URL with pre-filled message
  */
 export function buildWhatsAppBookingURL({ table, section, guests, date, time, name, phone }) {
-  const message = `Hello Nawab Dhaba! 👋
+  const message = `Hello Dilli Darbar Dhaba! 👋
 
 I'd like to request a table reservation.
 

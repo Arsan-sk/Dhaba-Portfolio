@@ -15,7 +15,7 @@ export default function Footer() {
               <span className="footer__logo-n">N</span>
             </div>
             <div className="footer__brand-info">
-              <h2 className="footer__name font-display">Nawab Dhaba</h2>
+              <h2 className="footer__name font-display">Dilli Darbar</h2>
               <p className="footer__tagline font-display">Come Hungry.</p>
             </div>
           </div>

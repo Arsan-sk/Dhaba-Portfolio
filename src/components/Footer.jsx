@@ -36,7 +36,7 @@ export default function Footer() {
                 marginBottom: '1rem',
               }}
             >
-              Nawab <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>Dhaba</span>
+              Dilli <span style={{ fontStyle: 'italic', color: 'var(--ember)' }}>Darbar</span>
             </div>
             <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '280px' }}>
               Bhiwandi's premier highway dining destination. Charcoal
@@ -83,12 +83,12 @@ export default function Footer() {
               Hours
             </div>
             <div style={{ fontSize: '0.95rem', color: 'var(--cream)', fontWeight: 600, marginBottom: '0.4rem' }}>
-              Open Every Day
+              Open Daily
             </div>
             <div style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: 1.6 }}>
-              11:00 AM – 1:00 AM
+              Open · Closes 3 AM
               <br />
-              Live tandoor kitchen active late into the night.
+              Family dining, late-night bites, and a relaxed roadside vibe.
             </div>
           </div>
 

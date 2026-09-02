@@ -3,16 +3,16 @@ import React from 'react';
 export default function MarqueeTicker() {
   const items = [
     'Charcoal Tandoor 🔥',
-    'Open Daily 11 AM – 1 AM',
+    'Open · Closes 3 AM',
     'Pomfret Tandoori',
-    'Nashik Road, Bhiwandi',
+    'Sawandhe, Maharashtra',
     'Raan Tandoori',
     'Family Enclosures',
-    'Charpai Garden',
-    'Royal AC Hall',
-    'Nawab Special Chicken',
-    'Mutton Dum Biryani',
-    'Highway Dhaba Since 2020',
+    'Outdoor Seating',
+    'Play Area',
+    'Traditional Mains',
+    'Desserts & More',
+    'Highway Dhaba Vibes',
     'Come Hungry 🍽️',
   ];
 

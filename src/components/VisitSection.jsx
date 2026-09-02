@@ -51,7 +51,7 @@ export default function VisitSection() {
 
             <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center' }}>
               <Clock size={18} style={{ flexShrink: 0 }} />
-              <span style={{ fontSize: '0.9rem' }}>Open Daily · 11:00 AM – 1:00 AM</span>
+              <span style={{ fontSize: '0.9rem' }}>Open · Closes 3 AM</span>
             </div>
           </div>
 
@@ -92,8 +92,8 @@ export default function VisitSection() {
           }}
         >
           <iframe
-            title="Nawab Dhaba Location Map"
-            src="https://maps.google.com/maps?q=Nawab+Dhaba+Nashik+Road+Bhinar+Bhiwandi+Maharashtra+421302&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            title="Dilli Darbar Dhaba Location Map"
+            src="https://maps.google.com/maps?q=Dilli+Darbar+Dhaba+Sawandhe+Maharashtra+421302&t=&z=14&ie=UTF8&iwloc=&output=embed"
             style={{
               width: '100%',
               height: '100%',

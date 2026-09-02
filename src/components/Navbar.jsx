@@ -94,7 +94,7 @@ export default function Navbar() {
                 flexShrink: 0,
               }}
             >
-              N
+              D
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
               <span
@@ -106,7 +106,7 @@ export default function Navbar() {
                   textTransform: 'uppercase',
                 }}
               >
-                NAWAB
+                DILLI
               </span>
               <span
                 style={{
@@ -118,7 +118,7 @@ export default function Navbar() {
                   marginTop: '1px',
                 }}
               >
-                Dhaba
+                Darbar
               </span>
             </div>
           </Link>

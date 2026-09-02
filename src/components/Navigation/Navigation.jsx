@@ -43,9 +43,9 @@ export default function Navigation() {
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''} ${isOpen ? 'nav--open' : ''}`}>
         <div className="nav__inner container--wide">
           {/* Brand */}
-          <Link to="/" className="nav__brand" aria-label="Nawab Dhaba Home">
-            <span className="nav__brand-icon">N</span>
-            <span className="nav__brand-text">Nawab<br/>Dhaba</span>
+          <Link to="/" className="nav__brand" aria-label="Dilli Darbar Dhaba Home">
+            <span className="nav__brand-icon">D</span>
+            <span className="nav__brand-text">Dilli<br/>Darbar</span>
           </Link>
 
           {/* Desktop Links */}
