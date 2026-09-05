@@ -2,18 +2,16 @@ import React from 'react';
 
 export default function MarqueeTicker() {
   const items = [
-    'Charcoal Tandoor 🔥',
+    'Friday Grand Buffet @ ₹499 🔥',
     'Open · Closes 3 AM',
-    'Pomfret Tandoori',
-    'Sawandhe, Maharashtra',
-    'Raan Tandoori',
-    'Family Enclosures',
-    'Outdoor Seating',
-    'Play Area',
-    'Traditional Mains',
-    'Desserts & More',
-    'Highway Dhaba Vibes',
-    'Come Hungry 🍽️',
+    '7 Types of Chicken Starters 🍗',
+    'Mumbai - Nashik Expy, Bhiwandi',
+    'Separate Family & Friends Zones 👨‍👩‍👧‍👦',
+    'Charcoal Tandoor & Kebabs 🔥',
+    'Outdoor Seating & Private Dining',
+    'Live Sports Screening 🏏',
+    'Desi Ghee Handis & Dum Biryani',
+    'Jalsa Dhaba — Come Hungry 🍽️',
   ];
 
   // Double the items for seamless loop

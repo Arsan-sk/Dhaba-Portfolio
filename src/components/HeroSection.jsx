@@ -138,7 +138,7 @@ export default function HeroSection() {
                   color: 'var(--gold)',
                 }}
               >
-                SAWANDHE · MAHARASHTRA 421302
+                MUMBAI - NASHIK EXPY · BHIWANDI 421302
               </span>
             </div>
 
@@ -162,18 +162,19 @@ export default function HeroSection() {
               begins.
             </h1>
 
-            {/* Subtitle */}
+            {/* Subtitle with Friday Buffet Callout */}
             <p
               style={{
                 fontSize: 'clamp(0.95rem, 2.2vw, 1.18rem)',
                 color: 'rgba(245, 238, 226, 0.92)',
                 lineHeight: 1.55,
-                maxWidth: '540px',
-                marginBottom: 'clamp(1.5rem, 3.5vh, 2.25rem)',
+                maxWidth: '560px',
+                marginBottom: 'clamp(1.2rem, 3vh, 1.75rem)',
                 textShadow: '0 2px 14px rgba(0,0,0,0.8)',
               }}
             >
-              Bold plates. Open tables. Late-night cravings sorted.
+              Authentic charcoal tandoor, late-night handis, and the grand 
+              <strong style={{ color: 'var(--gold)' }}> Friday Midnight Buffet @ ₹499</strong>. Open daily till 3 AM.
             </p>
 
             {/* CTA Buttons */}
@@ -181,17 +182,17 @@ export default function HeroSection() {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '1rem',
+                gap: '0.85rem',
                 flexWrap: 'wrap',
               }}
             >
-              {/* Primary Ember Button */}
+              {/* Primary Friday Buffet / Menu CTA */}
               <a
-                href="/menu"
+                href="#friday-buffet"
                 style={{
                   background: 'var(--ember)',
                   color: 'var(--cream)',
-                  padding: '0.85rem 1.85rem',
+                  padding: '0.85rem 1.75rem',
                   fontSize: '0.85rem',
                   fontWeight: 700,
                   letterSpacing: '0.02em',
@@ -201,7 +202,8 @@ export default function HeroSection() {
                   textDecoration: 'none',
                   transition: 'background 0.25s ease, transform 0.2s ease',
                   border: 'none',
-                  borderRadius: '0px',
+                  borderRadius: '4px',
+                  boxShadow: '0 4px 18px rgba(226, 88, 34, 0.45)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = '#c94717';
@@ -212,8 +214,38 @@ export default function HeroSection() {
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                Explore the Full Menu
+                Friday Buffet @ ₹499
                 <ArrowUpRight size={16} />
+              </a>
+
+              <a
+                href="/menu"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  color: 'var(--cream)',
+                  padding: '0.85rem 1.5rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.02em',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease',
+                  borderRadius: '4px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)';
+                  e.currentTarget.style.borderColor = 'var(--gold)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+                }}
+              >
+                Explore Menu
               </a>
 
               {/* Secondary Get Directions Link */}
@@ -233,7 +265,7 @@ export default function HeroSection() {
                   textDecoration: 'none',
                   transition: 'color 0.2s ease, opacity 0.2s ease',
                   opacity: 0.95,
-                  padding: '0.5rem 0',
+                  padding: '0.5rem 0.5rem',
                   textShadow: '0 1px 8px rgba(0,0,0,0.6)',
                 }}
                 onMouseEnter={(e) => {
@@ -251,7 +283,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: ND Monogram (Tilted ~18deg) & Animated Slide Indicators */}
+          {/* Right: JD Monogram (Tilted ~18deg) & Animated Slide Indicators */}
           <div
             className="hide-mobile"
             style={{
@@ -263,7 +295,7 @@ export default function HeroSection() {
               userSelect: 'none',
             }}
           >
-            {/* Tilted ND Badge Cluster */}
+            {/* Tilted JD Badge Cluster */}
             <div
               style={{
                 display: 'flex',
@@ -291,7 +323,7 @@ export default function HeroSection() {
                 EST.
               </span>
 
-              {/* Compact Stylized ND */}
+              {/* Compact Stylized JD */}
               <div
                 style={{
                   display: 'flex',
@@ -300,20 +332,20 @@ export default function HeroSection() {
                   margin: '2px 0',
                 }}
               >
-                {/* D — italic serif */}
+                {/* J — bold upright serif */}
                 <span
                   style={{
                     fontFamily: 'var(--font-serif)',
                     fontSize: 'clamp(2.7rem, 3.6vw, 3.4rem)',
-                    fontWeight: 400,
-                    fontStyle: 'italic',
+                    fontWeight: 700,
+                    fontStyle: 'normal',
                     color: 'var(--cream)',
-                    letterSpacing: '-0.04em',
+                    letterSpacing: '-0.02em',
                     lineHeight: 0.85,
                     textShadow: '0 2px 14px rgba(0,0,0,0.7)',
                   }}
                 >
-                  D
+                  J
                 </span>
                 {/* D — bold upright serif */}
                 <span
@@ -325,7 +357,7 @@ export default function HeroSection() {
                     color: 'var(--cream)',
                     letterSpacing: '-0.02em',
                     lineHeight: 0.85,
-                    marginLeft: '-0.06em',
+                    marginLeft: '0.02em',
                     textShadow: '0 2px 14px rgba(0,0,0,0.7)',
                   }}
                 >
@@ -333,7 +365,7 @@ export default function HeroSection() {
                 </span>
               </div>
 
-              {/* COME HUNGRY */}
+              {/* HIGHWAY JALSA */}
               <span
                 style={{
                   fontSize: '0.58rem',
@@ -345,7 +377,7 @@ export default function HeroSection() {
                   marginTop: '5px',
                 }}
               >
-                COME HUNGRY
+                HIGHWAY JALSA
               </span>
             </div>
 

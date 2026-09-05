@@ -76,12 +76,12 @@ export default function Navbar() {
             justifyContent: 'space-between',
           }}
         >
-          {/* Logo — Gold Circled N + NAWAB Dhaba */}
+          {/* Logo — Gold Circled J + JALSA Dhaba */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}>
             <div
               style={{
-                width: '32px',
-                height: '32px',
+                width: '34px',
+                height: '34px',
                 borderRadius: '50%',
                 border: '1.5px solid var(--gold)',
                 display: 'flex',
@@ -89,24 +89,26 @@ export default function Navbar() {
                 justifyContent: 'center',
                 fontFamily: 'var(--font-serif)',
                 fontSize: '1rem',
-                fontWeight: 600,
+                fontWeight: 700,
                 color: 'var(--gold)',
+                background: 'rgba(255, 184, 0, 0.08)',
                 flexShrink: 0,
+                boxShadow: '0 0 12px rgba(255, 184, 0, 0.25)',
               }}
             >
-              D
+              J
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
               <span
                 style={{
-                  fontSize: '0.58rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
+                  fontSize: '0.65rem',
+                  fontWeight: 800,
+                  letterSpacing: '0.18em',
                   color: 'var(--cream)',
                   textTransform: 'uppercase',
                 }}
               >
-                DILLI
+                JALSA
               </span>
               <span
                 style={{
@@ -118,7 +120,7 @@ export default function Navbar() {
                   marginTop: '1px',
                 }}
               >
-                Darbar
+                Dhaba
               </span>
             </div>
           </Link>

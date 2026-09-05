@@ -37,10 +37,10 @@ export default function StorySection() {
               className="body-lg"
               style={{ marginBottom: '1.25rem' }}
             >
-              Relaxed roadside dining meets warm hospitality at Dilli Darbar Dhaba,
-              where family tables, outdoor seating, and a playful atmosphere turn a
-              quick stop into a proper feast. Classic dhaba favourites are served with
-              the kind of comfort that keeps guests coming back.
+              Relaxed roadside dining meets warm hospitality at Jalsa Dhaba,
+              where family tables, outdoor seating, private dining rooms, and live sports turn a
+              quick highway stop into a proper feast. Classic dhaba favourites and grand buffets are served with
+              the kind of authentic taste that keeps guests coming back.
             </p>
             <p className="body-lg">
               Whether you arrive for an afternoon meal or a late-night craving,

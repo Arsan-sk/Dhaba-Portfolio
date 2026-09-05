@@ -2,6 +2,7 @@ import React from 'react';
 import HeroSection from '../../components/HeroSection';
 import MarqueeTicker from '../../components/MarqueeTicker';
 import StorySection from '../../components/StorySection';
+import FridayBuffetSection from '../../components/FridayBuffetSection';
 import SignatureCravings from '../../components/SignatureCravings';
 import FeastCTA from '../../components/FeastCTA';
 import GoodFoodSection from '../../components/GoodFoodSection';
@@ -26,14 +27,18 @@ export default function Home() {
       {/* 5. Ember CTA — "Start with one. End with a feast." */}
       <FeastCTA />
 
-      {/* 6. "Good food multiplies." */}
+      {/* 6. Special Offer Section: Grand Friday Midnight Buffet @ ₹499 */}
+      <FridayBuffetSection />
+
+      {/* 7. "Good food multiplies." */}
       <GoodFoodSection />
 
-      {/* 7. Ambience Zones — "Three ways to sit down." */}
+      {/* 8. Ambience Zones — "Three ways to sit down." */}
       <AmbienceSection />
 
-      {/* 8. Visit — "Find us hungry." */}
+      {/* 9. Visit & Location with Google Actions — "Find us hungry." */}
       <VisitSection />
     </div>
   );
 }
+
